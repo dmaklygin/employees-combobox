@@ -1,0 +1,18 @@
+this._start, !this['i-global']: {
+
+    this['i-global'] = { block: 'i-global', js: 'params' };
+
+    this.apply();
+
+}
+
+block blah, mix: {
+
+    var mix = applyNext(),
+        js = this['i-global'];
+
+    mix ? mix.push(js) : (mix = [js]);
+
+    return mix;
+
+}

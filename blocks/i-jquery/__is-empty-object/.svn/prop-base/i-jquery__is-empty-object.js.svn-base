@@ -1,0 +1,9 @@
+K 13
+svn:mergeinfo
+V 483
+/versions/2.0/blocks/i-jquery/is-empty-object/i-jquery__is-empty-object.js:4944,4946,4948-4949
+/versions/2.1/blocks/i-jquery/is-empty-object/i-jquery__is-empty-object.js:5350,5379-5380
+/versions/2.3/blocks/i-jquery/is-empty-object/i-jquery__is-empty-object.js:8637,8986,9081,9773
+/versions/2.4/blocks/i-jquery/is-empty-object/i-jquery__is-empty-object.js:15694,15696
+/versions/2.5/blocks/i-jquery/is-empty-object/i-jquery__is-empty-object.js:16195,16593-16594,16630-16631,16849,16940
+END

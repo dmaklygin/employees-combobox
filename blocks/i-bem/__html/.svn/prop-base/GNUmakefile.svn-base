@@ -1,0 +1,9 @@
+K 13
+svn:mergeinfo
+V 328
+/versions/2.0/blocks/i-bem/html/GNUmakefile:4944,4946,4948-4949
+/versions/2.1/blocks/i-bem/html/GNUmakefile:5350,5379-5380
+/versions/2.3/blocks/i-bem/html/GNUmakefile:8637,8986,9081,9773
+/versions/2.4/blocks/i-bem/html/GNUmakefile:15694,15696
+/versions/2.5/blocks/i-bem/html/GNUmakefile:16195,16593-16594,16630-16631,16849,16940
+END

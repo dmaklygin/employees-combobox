@@ -1,0 +1,9 @@
+K 10
+svn:ignore
+V 53
+i-ecma.wiki
+i-ecma.wiki.xml
+i-ecma.decl.js
+*.jsdoc.*
+
+END

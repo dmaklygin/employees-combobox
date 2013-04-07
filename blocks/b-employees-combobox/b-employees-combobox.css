@@ -1,0 +1,25 @@
+.b-employees-combobox
+{
+    position: relative;
+    width: 200px;
+}
+
+.b-employees-combobox__suggest
+{
+    border: 1px solid #000;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+.b-employees-combobox__suggest_show_yes
+{
+    display: block;
+}
+
+.b-employees-combobox__employee_select_yes
+{
+    background-color: #ddd;
+}
