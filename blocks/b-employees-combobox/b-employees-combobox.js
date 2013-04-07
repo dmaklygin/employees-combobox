@@ -23,13 +23,14 @@ BEM.DOM.decl('b-employees-combobox', {
                 .bindTo(this._input, 'blur', function() {
                     this.setMod(this._suggest, 'show', 'no');
                 }.bind(this))
-                
+
                 .bindTo(this._input, 'keypress', function(e) {
+                    if (e.keyCode == 13) { this._selectCurrentItem() }
+                }.bind(this))
+
+                .bindTo(this._input, 'keydown', function(e) {
                     switch (e.keyCode)
                     {
-                        case 13:
-                            this._selectCurrentItem();
-                            break;
                         case 40:
                             this._moveCursor('down');
                             break;
