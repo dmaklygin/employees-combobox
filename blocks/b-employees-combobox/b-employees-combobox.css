@@ -4,22 +4,90 @@
     width: 200px;
 }
 
+.b-employees-combobox__input
+{
+    width: 100%;
+}
+
 .b-employees-combobox__suggest
 {
-    border: 1px solid #000;
+    border: 1px solid #e7e7e7;
+    max-height: 300px;
+    overflow-y: auto;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(237, 237, 237, 1) 0%, rgba(255, 255, 255, 1) 43%, rgba(246, 246, 246, 1) 100%); /* W3C */
+    padding: 10px 10px 20px;
+}
+
+.b-employees-combobox__dropdown
+{
     position: absolute;
-    top: 100%;
+    top: 130%;
     left: 0;
-    width: 100%;
+    width: 300px;
+    display: none;
+    overflow: hidden;
+}
+
+.b-employees-combobox__department
+{
+    border-bottom: 1px solid #e1e1e1;
+    margin-top: 10px;
+    padding-bottom: 14px;
+}
+
+
+.b-employees-combobox__department-name
+{
+    margin-bottom: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.b-employees-combobox__companies
+{
+    float: left;
+    background-color: #efefef;
+}
+
+.b-employees-combobox__matched-counter
+{
+    position: absolute;
+    top: 0;
+    right: 5px;
+    background-color: #ffafff;
+    padding: 0 3px;
     display: none;
 }
 
-.b-employees-combobox__suggest_show_yes
+.b-employees-combobox__matched-counter_show_yes
 {
     display: block;
 }
 
 .b-employees-combobox__employee_select_yes
 {
-    background-color: #ddd;
+    background: linear-gradient(to bottom, rgba(214, 249, 255, 0.8) 0%, rgba(158, 232, 250, 0.8) 100%); /* W3C */
+    border: 1px solid #77ddff;
+    margin: -1px 0;
 }
+
+.b-employees-combobox__company
+{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.b-employees-combobox__employee
+{
+    cursor: pointer;
+    padding: 3px;
+    margin: 2px 0;
+}
+
+.b-employees-combobox__employee:hover
+{
+    background-color: #eee;
+}
+
+
+
