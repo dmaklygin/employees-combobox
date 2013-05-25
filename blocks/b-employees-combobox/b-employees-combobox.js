@@ -17,7 +17,7 @@ BEM.DOM.decl('b-employees-combobox', {
             this._suggest = this.elem('suggest');
             this._val = this._input.val();
             this._current = 0;
-            this._currentCompany = this._data[0].id;
+            this._currentCompanyId = this._data[0].id;
 
             this._preventHide = false;
 
@@ -62,7 +62,6 @@ BEM.DOM.decl('b-employees-combobox', {
 
     _showSuggest: function(scrollOff) {
         this.elem('dropdown').fadeIn(200, !scrollOff && this._scrollToCurrent());
-        this.setMod(this.elem('matched-counter'), 'show', 'yes');
     },
 
     _hideSuggest: function() {
@@ -71,7 +70,6 @@ BEM.DOM.decl('b-employees-combobox', {
             this._focus();
         } else {
             this.elem('dropdown').fadeOut(200);
-            this.setMod(this.elem('matched-counter'), 'show', 'no');
         }
     },
 
@@ -133,10 +131,19 @@ BEM.DOM.decl('b-employees-combobox', {
     // TODO use templates
     _getCompaniesHtml: function(list) {
         var htmlBuf = '',
-            cmpCls = 'b-employees-combobox__company';
+            cls = 'b-employees-combobox__company',
+            cidCurrent = this._currentCompanyId;
 
         $.each(list, function(nc, company) {
-            htmlBuf += '<li class="' + cmpCls + ' ' + cmpCls + '_id_' + company.id + '">' + company.name + '</li>';
+            var cnt = 0;
+
+            $.each(company.departments, function(nd, dep) { cnt += dep.employees.length });
+
+            htmlBuf +=
+                '<li class="' + cls + ' ' + cls + '_id_' + company.id + (cidCurrent == company.id ? ' ' + cls + '_select_yes' : '') + '">' +
+                    '<span class="' + cls + '-matched' + '">' + cnt + '</span>' +
+                    '<span class="' + cls + '-name' + '">' + company.name + '</span>' +
+                '</li>';
         });
 
         return htmlBuf;
@@ -146,7 +153,7 @@ BEM.DOM.decl('b-employees-combobox', {
     _getSuggestHtml: function(company) {
         var empCls = 'b-employees-combobox__employee';
 
-        if (!company) return 'Нет совпадений';
+        if (!company || !company.departments.length) return 'Нет совпадений';
 
         var htmlBuf = '<ul class="b-employees-combobox__departments-list">';
 
@@ -181,15 +188,14 @@ BEM.DOM.decl('b-employees-combobox', {
         });
 
         for (var i = 0, l = matched.length; i < l; i++) {
-            if (matched[i].id == this._currentCompany) {
+            if (matched[i].id == this._currentCompanyId) {
                 company = matched[i];
                 break;
             }
         }
 
-        BEM.DOM.update(this.elem('companies'), this._getCompaniesHtml(this._data));
+        BEM.DOM.update(this.elem('companies'), this._getCompaniesHtml(matched));
         BEM.DOM.update(this._suggest, this._getSuggestHtml(company));
-        BEM.DOM.update(this.elem('matched-counter'), count + '');
     },
 
     _getMatchedEmployee: function() {
@@ -226,7 +232,7 @@ BEM.DOM.decl('b-employees-combobox', {
                 });
             });
 
-            matchedDepartments.length && res.push({
+            res.push({
                 name: company.name,
                 id: company.id,
                 departments: matchedDepartments
@@ -302,7 +308,7 @@ BEM.DOM.decl('b-employees-combobox', {
            .liveBindTo('company', 'mousedown', function(e) {
                this._preventHide = true;
 
-               this._currentCompany = this.getMod(e.data.domElem, 'id');
+               this._currentCompanyId = this.getMod(e.data.domElem, 'id');
                this._refreshSuggest();
            })
    }

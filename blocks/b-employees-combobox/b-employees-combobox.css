@@ -73,8 +73,12 @@
 
 .b-employees-combobox__company
 {
-    font-weight: bold;
     cursor: pointer;
+}
+
+.b-employees-combobox__company_select_yes .b-employees-combobox__company-name
+{
+    font-weight: bold;
 }
 
 .b-employees-combobox__employee
