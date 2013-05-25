@@ -83,6 +83,10 @@ BEM.DOM.decl('b-employees-combobox', {
         if (!emp) return;
 
         this._input.val(emp.fullName);
+
+        this.params.onSelect && this.params.onSelect(id);
+
+        this._hideSuggest();
     },
 
     _moveCursor: function(direction) {
