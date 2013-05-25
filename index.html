@@ -23,16 +23,20 @@
 
             <!-- TODO use templates -->
             <div class="i-bem b-employees-combobox"
-                onclick="return { 'b-employees-combobox': { data: data, onSelect: function(idEmployee) { console.log(idEmployee) } } }">
+                onclick="return { 'b-employees-combobox': { data: data, selectId: 1, onSelect: function(idEmployee) { console.log(idEmployee) } } }">
 
                 <input class="b-employees-combobox__input" type="text" />
 
-                <div class="b-employees-combobox__dropdown">
-                    <ul class="b-employees-combobox__companies">
-                    </ul>
-                    <div class="b-employees-combobox__suggest">
-                    </div>
-                </div>
+                <table cellspacing="0" rowspasing="0" class="b-employees-combobox__dropdown">
+                    <tr>
+                        <td class="b-employees-combobox__companies-wrap">
+                            <ul class="b-employees-combobox__companies"></ul>
+                        </td>
+                        <td class="b-employees-combobox__suggest-wrap">
+                            <div class="b-employees-combobox__suggest"></div>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
 

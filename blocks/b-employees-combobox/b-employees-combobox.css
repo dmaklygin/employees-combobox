@@ -9,89 +9,192 @@
     width: 100%;
 }
 
-.b-employees-combobox__suggest
-{
-    border: 1px solid #e7e7e7;
-    max-height: 300px;
-    overflow-y: auto;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(237, 237, 237, 1) 0%, rgba(255, 255, 255, 1) 43%, rgba(246, 246, 246, 1) 100%); /* W3C */
-    padding: 10px 10px 20px;
-}
 
 .b-employees-combobox__dropdown
 {
     position: absolute;
     top: 130%;
     left: 0;
-    width: 300px;
+
     display: none;
-    overflow: hidden;
+
+    border: 1px solid #c0c0c0;
 }
 
-.b-employees-combobox__department
+.b-employees-combobox__suggest-wrap
 {
-    border-bottom: 1px solid #e1e1e1;
-    margin-top: 10px;
-    padding-bottom: 14px;
+    background: rgb(245, 245, 245); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(250, 250, 250, 1) 49%, rgba(237, 237, 237, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(245, 245, 245, 1)), color-stop(49%, rgba(250, 250, 250, 1)), color-stop(100%, rgba(237, 237, 237, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(250, 250, 250, 1) 49%, rgba(237, 237, 237, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(250, 250, 250, 1) 49%, rgba(237, 237, 237, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(245, 245, 245, 1) 0%, rgba(250, 250, 250, 1) 49%, rgba(237, 237, 237, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(245, 245, 245, 1) 0%, rgba(250, 250, 250, 1) 49%, rgba(237, 237, 237, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#ededed', GradientType=0); /* IE6-9 */
+
+    border-left: 1px solid #c0c0c0;
 }
 
-
-.b-employees-combobox__department-name
+.b-employees-combobox__suggest
 {
-    margin-bottom: 5px;
-    font-weight: bold;
-    cursor: pointer;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    max-height: 300px;
+    padding: 15px 10px 20px;
+}
+
+.b-employees-combobox__companies-wrap
+{
+    vertical-align: top;
+
+    background: rgb(246, 246, 246); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(246, 246, 246, 1) 0%, rgba(229, 229, 229, 1) 48%, rgba(250, 250, 250, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(246, 246, 246, 1)), color-stop(48%, rgba(229, 229, 229, 1)), color-stop(100%, rgba(250, 250, 250, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(246, 246, 246, 1) 0%, rgba(229, 229, 229, 1) 48%, rgba(250, 250, 250, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(246, 246, 246, 1) 0%, rgba(229, 229, 229, 1) 48%, rgba(250, 250, 250, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(246, 246, 246, 1) 0%, rgba(229, 229, 229, 1) 48%, rgba(250, 250, 250, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(246, 246, 246, 1) 0%, rgba(229, 229, 229, 1) 48%, rgba(250, 250, 250, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#fafafa', GradientType=0); /* IE6-9 */
 }
 
 .b-employees-combobox__companies
 {
-    float: left;
-    background-color: #efefef;
-}
-
-.b-employees-combobox__matched-counter
-{
-    position: absolute;
-    top: 0;
-    right: 5px;
-    background-color: #ffafff;
-    padding: 0 3px;
-    display: none;
-}
-
-.b-employees-combobox__matched-counter_show_yes
-{
-    display: block;
-}
-
-.b-employees-combobox__employee_select_yes
-{
-    background: linear-gradient(to bottom, rgba(214, 249, 255, 0.8) 0%, rgba(158, 232, 250, 0.8) 100%); /* W3C */
-    border: 1px solid #77ddff;
-    margin: -1px 0;
+    height: 100%;
+    padding: 15px;
 }
 
 .b-employees-combobox__company
 {
+    position: relative;
+
+    padding-left: 35px;
+    margin-bottom: 10px;
+
     cursor: pointer;
+    text-align: right;
+    color: #666;
+}
+
+.b-employees-combobox__company-matched
+{
+    font-size: 11px;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    color: #bbb;
+}
+
+.b-employees-combobox__company-name
+{
+    white-space: nowrap;
 }
 
 .b-employees-combobox__company_select_yes .b-employees-combobox__company-name
 {
     font-weight: bold;
+
+    color: #333;
+}
+
+.b-employees-combobox__department
+{
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.b-employees-combobox__department-name
+{
+    font-weight: bold;
+    font-size: 12px;
+
+    margin-bottom: 10px;
+    padding-left: 17px;
+
+    cursor: pointer;
+    white-space: nowrap;
+    color: #333;
+}
+
+.b-employees-combobox__department_expand_on  .b-employees-combobox__department-name
+{
+    background: url('../../images/expander-down.png') 0 3px no-repeat;
+}
+
+.b-employees-combobox__department_expand_off  .b-employees-combobox__department-name
+{
+    background: url('../../images/expander-up.png') 0 3px no-repeat;
+}
+
+.b-employees-combobox__employees-list
+{
+    margin-left: 15px;
 }
 
 .b-employees-combobox__employee
 {
-    cursor: pointer;
     padding: 3px;
     margin: 2px 0;
+
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.b-employees-combobox__employee_select_yes
+{
+    margin: -1px 0;
+
+    background: rgb(227, 245, 254); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(227, 245, 254, 1) 0%, rgba(227, 245, 252, 1) 50%, rgba(209, 247, 255, 1) 51%, rgba(209, 247, 253, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(227, 245, 254, 1)), color-stop(50%, rgba(227, 245, 252, 1)), color-stop(51%, rgba(209, 247, 255, 1)), color-stop(100%, rgba(209, 247, 253, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(227, 245, 254, 1) 0%, rgba(227, 245, 252, 1) 50%, rgba(209, 247, 255, 1) 51%, rgba(209, 247, 253, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(227, 245, 254, 1) 0%, rgba(227, 245, 252, 1) 50%, rgba(209, 247, 255, 1) 51%, rgba(209, 247, 253, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(227, 245, 254, 1) 0%, rgba(227, 245, 252, 1) 50%, rgba(209, 247, 255, 1) 51%, rgba(209, 247, 253, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(227, 245, 254, 1) 0%, rgba(227, 245, 252, 1) 50%, rgba(209, 247, 255, 1) 51%, rgba(209, 247, 253, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e3f5fe', endColorstr='#d1f7fd', GradientType=0); /* IE6-9 */
+
+    border: 1px solid #A6D6FF;
 }
 
 .b-employees-combobox__employee:hover
 {
     background-color: #eee;
 }
+
+.b-employees-combobox__employee-info
+{
+    position: relative;
+    top: -3px;
+    display: inline-block;
+
+    margin-left: 5px;
+}
+
+.b-employees-combobox__employee-pos
+{
+    color: #999;
+}
+
+.b-employees-combobox__employee-name
+{
+
+}
+
+/*.b-employees-combobox__arrow*/
+/*{*/
+    /*position: absolute;*/
+    /*top: 40%;*/
+    /*left: -17px;*/
+
+    /*width: 17px;*/
+    /*height: 32px;*/
+
+    /*background-image: url('../../images/ecombo-left-arrow.png');*/
+/*}*/
 
 
 
