@@ -50,6 +50,9 @@ BEM.DOM.decl('b-employees-combobox', {
                 });
 
             setInterval(function() { _this.inputVal(_this._input.val()) }, 200);
+
+            this.params.selectId && this._selectEmployee(this.params.selectId);
+
             this._refreshSuggest();
         }
 
@@ -69,7 +72,7 @@ BEM.DOM.decl('b-employees-combobox', {
             this._preventHide = false;
             this._focus();
         } else {
-            this.elem('dropdown').fadeOut(200);
+         //   this.elem('dropdown').fadeOut(200);
         }
     },
 
@@ -166,8 +169,14 @@ BEM.DOM.decl('b-employees-combobox', {
                 '<ul class="b-employees-combobox__employees-list">';
 
             $.each(dep.employees, function(ne, emp) {
-                htmlBuf += '<li class="' + empCls + ' ' +
-                    (ne === 0 && nd === 0 ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + '">' + emp.fullName + '</li>';
+                htmlBuf +=
+                    '<li class="' + empCls + ' ' + (ne === 0 && nd === 0 ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + '">' +
+                        '<img src="'+ emp.avatarUrl +'" height="32px" width="32px" />' +
+                        '<div class="' + empCls + '-info">' +
+                            '<div class="' + empCls + '-name">' + emp.fullName + '</div>' +
+                            '<div class="' + empCls + '-pos">' + emp.position + '</div>' +
+                        '</div>'
+                    '</li>';
             });
             htmlBuf += '</ul></li>';
         });
