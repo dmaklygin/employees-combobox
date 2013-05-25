@@ -72,7 +72,7 @@ BEM.DOM.decl('b-employees-combobox', {
             this._preventHide = false;
             this._focus();
         } else {
-         //   this.elem('dropdown').fadeOut(200);
+            this.elem('dropdown').fadeOut(200);
         }
     },
 
