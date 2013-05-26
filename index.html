@@ -23,8 +23,9 @@
 
             <!-- TODO use templates -->
             <div class="i-bem b-employees-combobox"
-                onclick="return { 'b-employees-combobox': { data: data, selectId: 1, onSelect: function(idEmployee) { console.log(idEmployee) } } }">
+                onclick="return { 'b-employees-combobox': { data: data, onSelect: function(idEmployee) { console.log(idEmployee) } } }">
 
+                <ul class="b-employees-combobox__selected-items"></ul>
                 <input class="b-employees-combobox__input" type="text" />
 
                 <table cellspacing="0" rowspasing="0" class="b-employees-combobox__dropdown">

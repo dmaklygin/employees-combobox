@@ -6,7 +6,21 @@
 
 .b-employees-combobox__input
 {
-    width: 100%;
+    width: 96%;
+    height: 26px;
+    padding: 0 2%;
+
+    color: #333;
+
+    border: 1px solid #c1c1c1;
+    background: rgb(240, 240, 240); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(240, 240, 240, 1)), color-stop(100%, rgba(255, 255, 255, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#ffffff', GradientType=0); /* IE6-9 */
 }
 
 
@@ -137,7 +151,7 @@
 
 .b-employees-combobox__employee
 {
-    padding: 3px;
+    padding: 3px 5px;
     margin: 2px 0;
 
     cursor: pointer;
@@ -182,6 +196,63 @@
 .b-employees-combobox__employee-name
 {
 
+}
+
+.b-employees-combobox__selected-items
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 101%;
+
+    background-color: #fff;
+}
+
+.b-employees-combobox__selected-item
+{
+    position: relative;
+
+    height: 18px;
+    padding: 4px 6px;
+
+    color: #444;
+
+    border: 1px solid #cdcdcd;
+    background: rgb(243, 243, 243); /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(243, 243, 243, 1) 0%, rgba(247, 247, 247, 1) 23%, rgba(230, 230, 230, 1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 243, 243, 1)), color-stop(23%, rgba(247, 247, 247, 1)), color-stop(100%, rgba(230, 230, 230, 1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, rgba(243, 243, 243, 1) 0%, rgba(247, 247, 247, 1) 23%, rgba(230, 230, 230, 1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, rgba(243, 243, 243, 1) 0%, rgba(247, 247, 247, 1) 23%, rgba(230, 230, 230, 1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(243, 243, 243, 1) 0%, rgba(247, 247, 247, 1) 23%, rgba(230, 230, 230, 1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom, rgba(243, 243, 243, 1) 0%, rgba(247, 247, 247, 1) 23%, rgba(230, 230, 230, 1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3f3f3', endColorstr='#e6e6e6', GradientType=0); /* IE6-9 */
+}
+
+.b-employees-combobox__selected-item-name
+{
+    position: relative;
+    top: -4px;
+
+    margin-left: 8px;
+}
+
+.b-employees-combobox__cancel-selected
+{
+    position: absolute;
+    right: 9px;
+    top: 9px;
+
+    width: 9px;
+    height: 9px;
+
+    cursor: pointer;
+
+    background: url('../../images/ic-round-cross-small-grey.png');
+}
+
+.b-employees-combobox__cancel-selected:hover
+{
+    background: url('../../images/ic-round-cross-small.png');
 }
 
 /*.b-employees-combobox__arrow*/

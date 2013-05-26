@@ -28,9 +28,13 @@ BEM.DOM.decl('b-employees-combobox', {
                       this.afterCurrentEvent(function() { _this._hideSuggest() });
                 })
 
+                .bindTo('dropdown', 'mousedown', function() {
+                    this._preventHide = true;
+                })
+
                 .bindTo(this._input, 'keypress', function(e) {
                     if (e.keyCode == 13) {
-                        _this._selectEmployee(_this.getMod(_this.findElem('employee', 'select', 'yes'), 'id'));
+                        _this.selectEmployee(_this.getMod(_this.findElem('employee', 'select', 'yes'), 'id'));
                         _this._hideSuggest();
                     }
                 })
@@ -51,8 +55,6 @@ BEM.DOM.decl('b-employees-combobox', {
 
             setInterval(function() { _this.inputVal(_this._input.val()) }, 200);
 
-            this.params.selectId && this._selectEmployee(this.params.selectId);
-
             this._refreshSuggest();
         }
 
@@ -60,7 +62,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
     _scrollToCurrent: function(current) {
         current || (current = this.findElem('employee').eq(this._current));
-        current.length && this._suggest.scrollTop(current.position().top + this._suggest.scrollTop());
+        current.length && this._suggest.scrollTop(current.position().top + this._suggest.scrollTop() - 5);
     },
 
     _showSuggest: function(scrollOff) {
@@ -76,18 +78,23 @@ BEM.DOM.decl('b-employees-combobox', {
         }
     },
 
-    _selectEmployee: function(id) {
+    selectEmployee: function(id) {
         if (!id) return;
 
         var emp = this._getEmployeeById(id);
 
         if (!emp) return;
 
-        this._input.val(emp.fullName);
-
         this.params.onSelect && this.params.onSelect(id);
 
+        BEM.DOM.update(this.elem('selected-items'), this.__self.getSelectedItemHtml(emp));
+
         this._hideSuggest();
+    },
+
+    cancelSelected: function(id) {
+
+        this.findElem('selected-item', 'id', id).slideUp(200, $.proxy(this._focus, this));
     },
 
     _moveCursor: function(direction) {
@@ -131,60 +138,6 @@ BEM.DOM.decl('b-employees-combobox', {
         this.setMod(next, 'select', 'yes');
     },
 
-    // TODO use templates
-    _getCompaniesHtml: function(list) {
-        var htmlBuf = '',
-            cls = 'b-employees-combobox__company',
-            cidCurrent = this._currentCompanyId;
-
-        $.each(list, function(nc, company) {
-            var cnt = 0;
-
-            $.each(company.departments, function(nd, dep) { cnt += dep.employees.length });
-
-            htmlBuf +=
-                '<li class="' + cls + ' ' + cls + '_id_' + company.id + (cidCurrent == company.id ? ' ' + cls + '_select_yes' : '') + '">' +
-                    '<span class="' + cls + '-matched' + '">' + cnt + '</span>' +
-                    '<span class="' + cls + '-name' + '">' + company.name + '</span>' +
-                '</li>';
-        });
-
-        return htmlBuf;
-    },
-
-    // TODO use templates
-    _getSuggestHtml: function(company) {
-        var empCls = 'b-employees-combobox__employee';
-
-        if (!company || !company.departments.length) return 'Нет совпадений';
-
-        var htmlBuf = '<ul class="b-employees-combobox__departments-list">';
-
-        $.each(company.departments, function(nd, dep) {
-
-            if (!dep.employees) return;
-
-            htmlBuf += '<li class="b-employees-combobox__department b-employees-combobox__department_expand_on">' +
-                '<div class="b-employees-combobox__department-name">' + dep.name + '</div>' +
-                '<ul class="b-employees-combobox__employees-list">';
-
-            $.each(dep.employees, function(ne, emp) {
-                htmlBuf +=
-                    '<li class="' + empCls + ' ' + (ne === 0 && nd === 0 ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + '">' +
-                        '<img src="'+ emp.avatarUrl +'" height="32px" width="32px" />' +
-                        '<div class="' + empCls + '-info">' +
-                            '<div class="' + empCls + '-name">' + emp.fullName + '</div>' +
-                            '<div class="' + empCls + '-pos">' + emp.position + '</div>' +
-                        '</div>'
-                    '</li>';
-            });
-            htmlBuf += '</ul></li>';
-        });
-        htmlBuf += '</ul></li>';
-
-        return htmlBuf + '</ul>';
-    },
-
     _refreshSuggest: function() {
         var matched = this._getMatchedEmployee(),
             count = 0,
@@ -203,8 +156,8 @@ BEM.DOM.decl('b-employees-combobox', {
             }
         }
 
-        BEM.DOM.update(this.elem('companies'), this._getCompaniesHtml(matched));
-        BEM.DOM.update(this._suggest, this._getSuggestHtml(company));
+        BEM.DOM.update(this.elem('companies'), this.__self.getCompaniesHtml(matched, this._currentCompanyId));
+        BEM.DOM.update(this._suggest, this.__self.getSuggestHtml(company));
     },
 
     _getMatchedEmployee: function() {
@@ -298,12 +251,10 @@ BEM.DOM.decl('b-employees-combobox', {
            })
 
            .liveBindTo('employee', 'mousedown', function(e) {
-               this._selectEmployee(this.getMod(e.data.domElem, 'id'));
+               this.selectEmployee(this.getMod(e.data.domElem, 'id'));
            })
 
            .liveBindTo('department-name', 'mousedown', function(e) {
-               this._preventHide = true;
-
                var depDom = e.data.domElem.parent(),
                    hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
 
@@ -315,10 +266,77 @@ BEM.DOM.decl('b-employees-combobox', {
            })
 
            .liveBindTo('company', 'mousedown', function(e) {
-               this._preventHide = true;
-
                this._currentCompanyId = this.getMod(e.data.domElem, 'id');
                this._refreshSuggest();
            })
-   }
+
+           .liveBindTo('cancel-selected', 'mousedown', function(e) {
+               this.cancelSelected(this.getMod(e.data.domElem.parent(), 'id'));
+           })
+   },
+
+    // TODO use templates
+    getCompaniesHtml: function(list, cidCurrent) {
+        var htmlBuf = '',
+            cls = 'b-employees-combobox__company';
+
+        $.each(list, function(nc, company) {
+            var cnt = 0;
+
+            $.each(company.departments, function(nd, dep) {
+                cnt += dep.employees.length
+            });
+
+            htmlBuf +=
+                '<li class="' + cls + ' ' + cls + '_id_' + company.id + (cidCurrent == company.id ? ' ' + cls + '_select_yes' : '') + '">' +
+                    '<span class="b-employees-combobox__company-matched">' + cnt + '</span>' +
+                    '<span class="b-employees-combobox__company-name">' + company.name + '</span>' +
+                '</li>';
+        });
+
+        return htmlBuf;
+    },
+
+    // TODO use templates
+    getSuggestHtml: function(company) {
+        var empCls = 'b-employees-combobox__employee';
+
+        if (!company || !company.departments.length) return 'Нет совпадений';
+
+        var htmlBuf = '<ul class="b-employees-combobox__departments-list">';
+
+        $.each(company.departments, function(nd, dep) {
+
+            if (!dep.employees) return;
+
+            htmlBuf +=
+                '<li class="b-employees-combobox__department b-employees-combobox__department_expand_on">' +
+                    '<div class="b-employees-combobox__department-name">' + dep.name + '</div>' +
+                        '<ul class="b-employees-combobox__employees-list">';
+
+            $.each(dep.employees, function(ne, emp) {
+                htmlBuf +=
+                    '<li class="' + empCls + ' ' + (ne === 0 && nd === 0 ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + '">' +
+                        '<img src="' + emp.avatarUrl + '" height="32px" width="32px" />' +
+                        '<div class="b-employees-combobox__employee-info">' +
+                            '<div class="b-employees-combobox__employee-name">' + emp.fullName + '</div>' +
+                            '<div class="b-employees-combobox__employee-pos">' + emp.position + '</div>' +
+                        '</div>'
+                    '</li>';
+            });
+            htmlBuf += '</ul></li>';
+        });
+        htmlBuf += '</ul></li>';
+
+        return htmlBuf + '</ul>';
+    },
+
+    // TODO use templates
+    getSelectedItemHtml: function(employee) {
+        return '<li class="b-employees-combobox__selected-item' + ' b-employees-combobox__selected-item_id_' + employee.id + '">' +
+            '<img src="' + employee.avatarUrl + '" height="18px" width="18px" />' +
+            '<span class="b-employees-combobox__selected-item-name">' + employee.fullName + '</span>' +
+            '<div class="b-employees-combobox__cancel-selected"></div>' +
+        '</li>';
+    }
 });
