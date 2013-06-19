@@ -87,6 +87,9 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.params.onSelect && this.params.onSelect(id);
 
+        // set hidden input
+        this.elem('value').val(id);
+
         BEM.DOM.update(this.elem('selected-items'), this.__self.getSelectedItemHtml(emp));
 
         this._hideSuggest();
@@ -95,6 +98,9 @@ BEM.DOM.decl('b-employees-combobox', {
     cancelSelected: function(id) {
 
         this.findElem('selected-item', 'id', id).slideUp(200, $.proxy(this._focus, this));
+
+        // unset hidden input
+        this.elem('value').val('');
     },
 
     _moveCursor: function(direction) {
