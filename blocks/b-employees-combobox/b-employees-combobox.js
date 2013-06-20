@@ -326,7 +326,7 @@ BEM.DOM.decl('b-employees-combobox', {
                         '<img src="' + emp.avatarUrl + '" height="32px" width="32px" />' +
                         '<div class="b-employees-combobox__employee-info">' +
                             '<div class="b-employees-combobox__employee-name">' + emp.fullName + '</div>' +
-                            '<div class="b-employees-combobox__employee-pos">' + emp.position + '</div>' +
+                            '<div class="b-employees-combobox__employee-pos" title="' + emp.position + '">' + emp.position + '</div>' +
                         '</div>'
                     '</li>';
             });

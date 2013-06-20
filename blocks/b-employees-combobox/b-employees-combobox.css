@@ -190,7 +190,11 @@
 
 .b-employees-combobox__employee-pos
 {
+    width: 220px;
     color: #999;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .b-employees-combobox__employee-name
