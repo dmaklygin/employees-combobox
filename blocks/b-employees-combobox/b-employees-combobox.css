@@ -202,6 +202,11 @@
 
 }
 
+.b-employees-combobox__employee-name strong
+{
+    font-weight: bold;
+}
+
 .b-employees-combobox__selected-items
 {
     position: absolute;

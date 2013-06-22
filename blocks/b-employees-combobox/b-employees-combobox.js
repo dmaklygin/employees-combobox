@@ -163,7 +163,7 @@ BEM.DOM.decl('b-employees-combobox', {
         }
 
         BEM.DOM.update(this.elem('companies'), this.__self.getCompaniesHtml(matched, this._currentCompanyId));
-        BEM.DOM.update(this._suggest, this.__self.getSuggestHtml(company));
+        BEM.DOM.update(this._suggest, this.__self.getSuggestHtml(company, { name: this._val }));
     },
 
     _getMatchedEmployee: function() {
@@ -304,7 +304,7 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     // TODO use templates
-    getSuggestHtml: function(company) {
+    getSuggestHtml: function(company, options) {
         var empCls = 'b-employees-combobox__employee';
 
         if (!company || !company.departments.length) return 'Нет совпадений';
@@ -321,11 +321,23 @@ BEM.DOM.decl('b-employees-combobox', {
                         '<ul class="b-employees-combobox__employees-list">';
 
             $.each(dep.employees, function(ne, emp) {
+
+                var name = emp.fullName;
+
+                if (options.name) {
+                    name = name
+                        .split(options.name)
+                        .map(function (word, index) {
+                            return index == 0 ? word + '<strong>' + options.name + '</strong>' : word;
+                        })
+                        .join('');
+                }
+
                 htmlBuf +=
                     '<li class="' + empCls + ' ' + (ne === 0 && nd === 0 ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + '">' +
                         '<img src="' + emp.avatarUrl + '" height="32px" width="32px" />' +
                         '<div class="b-employees-combobox__employee-info">' +
-                            '<div class="b-employees-combobox__employee-name">' + emp.fullName + '</div>' +
+                            '<div class="b-employees-combobox__employee-name">' + name + '</div>' +
                             '<div class="b-employees-combobox__employee-pos" title="' + emp.position + '">' + emp.position + '</div>' +
                         '</div>'
                     '</li>';
