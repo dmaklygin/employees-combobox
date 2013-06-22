@@ -47,6 +47,10 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#ededed',GradientType=0 ); /* IE6-9 */
 
     border-left: 1px solid #c0c0c0;
+
+    -webkit-box-shadow: -2px 0px 3px rgba(50, 50, 50, 0.2);
+       -moz-box-shadow: -2px 0px 3px rgba(50, 50, 50, 0.2);
+            box-shadow: -2px 0px 3px rgba(50, 50, 50, 0.2);
 }
 
 .b-employees-combobox__suggest
@@ -57,6 +61,37 @@
     max-height: 300px;
     padding: 15px 10px 20px;
 }
+
+.b-employees-combobox__suggest:before
+{
+    position: absolute;
+    z-index: 111;
+    width: 0;
+    height: 0;
+    top: 13px;
+    right: 260px;
+    content: "";
+    border-top: 10px solid transparent;
+    border-right: 10px solid white;
+    border-bottom: 10px solid transparent;
+    -webkit-filter: drop-shadow(-2px 0px 3px rgba(63,172,211,1));
+}
+
+.b-employees-combobox__suggest:after
+{
+    position: absolute;
+    z-index: 110;
+    content: "";
+    top: 4px;
+    right: 259px;
+    background: white;
+    -webkit-box-shadow: -2px 0px 3px rgba(63,172,211,1);
+       -moz-box-shadow: -2px 0px 3px rgba(63,172,211,1);
+            box-shadow: -2px 0px 3px rgba(63,172,211,1);
+    width: 1px;
+    height: 40px;
+}
+
 
 .b-employees-combobox__companies-wrap
 {
@@ -276,13 +311,29 @@
 
 
 
-.b-employees-combobox__company_select_yes:after
-{
-    position: absolute;
-    content: "◀";
-    top: -4px;
-    right: -19px;
-    color: white;
-    text-shadow: -1px 0px 2px rgba(63,172,211,1);
-    font-size: 1.3em;
-}
+/*.b-employees-combobox__company_select_yes:after*/
+/*{*/
+    /*position: absolute;*/
+    /*content: "◀";*/
+    /*top: -4px;*/
+    /*right: -19px;*/
+    /*color: white;*/
+    /*text-shadow: -1px 0px 2px rgba(63,172,211,1);*/
+    /*font-size: 1.3em;*/
+/*}*/
+
+/*.b-employees-combobox__arrow*/
+/*{*/
+    /*width: 1px;*/
+    /*height: 30px;*/
+    /*background: white;*/
+    /*position: absolute;*/
+    /*box-shadow: -1px 0px 5px rgba(63,172,211, 0.95);*/
+    /*right: -15px;*/
+    /*top: -7px;*/
+/*}*/
+
+/*.b-employees-combobox__arrow::after*/
+/*{*/
+    /*position:absolute;*/
+/*}*/

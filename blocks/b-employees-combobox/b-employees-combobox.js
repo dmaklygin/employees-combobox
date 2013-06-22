@@ -297,6 +297,7 @@ BEM.DOM.decl('b-employees-combobox', {
                 '<li class="' + cls + ' ' + cls + '_id_' + company.id + (cidCurrent == company.id ? ' ' + cls + '_select_yes' : '') + '">' +
                     '<span class="b-employees-combobox__company-matched">' + cnt + '</span>' +
                     '<span class="b-employees-combobox__company-name">' + company.name + '</span>' +
+                    '<i class="b-employees-combobox__arrow"></i>' +
                 '</li>';
         });
 
