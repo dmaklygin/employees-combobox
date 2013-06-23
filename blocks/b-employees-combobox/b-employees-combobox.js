@@ -69,10 +69,9 @@ BEM.DOM.decl('b-employees-combobox', {
 
         var _this = this;
 
-        this.elem('dropdown').fadeIn(200, function () {
+        this.elem('dropdown')
+            .fadeIn(200, function () {
                 !scrollOff && _this._scrollToCurrent();
-
-                navigator.appVersion.indexOf("Mac") == -1 && _this._suggest.nanoScroller();
             });
     },
 
@@ -152,7 +151,8 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     _refreshSuggest: function() {
-        var matched = this._getMatchedEmployee(),
+        var _this = this,
+            matched = this._getMatchedEmployee(),
             count = 0,
             company;
 
@@ -172,12 +172,8 @@ BEM.DOM.decl('b-employees-combobox', {
         BEM.DOM.update(this.elem('companies'), this.__self.getCompaniesHtml(matched, this._currentCompanyId));
         BEM.DOM.update(this._suggest, this.__self.getSuggestHtml(company, { name: this._val }));
 
-
-        var _this = this;
         window.setTimeout(function() {
-            delete _this._suggest[0].nanoscroller;
-
-            navigator.appVersion.indexOf("Mac") == -1 && _this._suggest.nanoScroller();
+            _this._suggest.mCustomScrollbar();
         }, 0);
 
     },
