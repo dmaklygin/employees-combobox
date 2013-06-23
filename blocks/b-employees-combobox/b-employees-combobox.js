@@ -164,6 +164,8 @@ BEM.DOM.decl('b-employees-combobox', {
 
         BEM.DOM.update(this.elem('companies'), this.__self.getCompaniesHtml(matched, this._currentCompanyId));
         BEM.DOM.update(this._suggest, this.__self.getSuggestHtml(company, { name: this._val }));
+
+        this._suggest.tinyscrollbar();
     },
 
     _getMatchedEmployee: function() {
