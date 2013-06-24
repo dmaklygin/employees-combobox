@@ -63,6 +63,8 @@ BEM.DOM.decl('b-employees-combobox', {
     _scrollToCurrent: function(current) {
         current || (current = this.findElem('employee').eq(this._current));
         current.length && this._suggest.scrollTop(current.position().top + this._suggest.scrollTop() - 5);
+
+        this.__scroller.mCustomScrollbar("scrollTo", current.position().top + this._suggest.scrollTop() - 5);
     },
 
     _showSuggest: function(scrollOff) {
@@ -123,7 +125,6 @@ BEM.DOM.decl('b-employees-combobox', {
 
         var next = items.eq(this._current);
         var nextDep = next.parent().parent();
-
         // поиск не схлопнутого отдела для активного пункта
         if (this.hasMod(nextDep, 'expand', 'off')) {
             var deps = $('.b-employees-combobox__department', nextDep.parent());
@@ -136,6 +137,7 @@ BEM.DOM.decl('b-employees-combobox', {
             } while (this.hasMod(deps.eq(counter), 'expand', 'off') && counter != nextDep.index())
 
             var nextDepChild = $('.b-employees-combobox__employees-list', deps.eq(counter)).children();
+
             next = direction == 'down' ? nextDepChild.first() : nextDepChild.last();
             for (var i = 0, l = items.length; i < l; i++) {
                 if (next[0] == items[i]) {
@@ -169,13 +171,14 @@ BEM.DOM.decl('b-employees-combobox', {
             }
         }
 
+        this._current = 0;
+
         BEM.DOM.update(this.elem('companies'), this.__self.getCompaniesHtml(matched, this._currentCompanyId));
         BEM.DOM.update(this._suggest, this.__self.getSuggestHtml(company, { name: this._val }));
 
         window.setTimeout(function() {
-            _this._suggest.mCustomScrollbar();
+            _this.__scroller = _this._suggest.mCustomScrollbar();
         }, 0);
-
     },
 
     _getMatchedEmployee: function() {

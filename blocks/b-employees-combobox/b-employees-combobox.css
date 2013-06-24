@@ -57,7 +57,7 @@
     overflow-x: hidden;
     width: 240px;
     max-height: 300px;
-    padding: 10px 10px 14px 14px;
+    padding: 10px 0 14px 14px;
 }
 
 .b-employees-combobox__companies-wrap
@@ -155,15 +155,14 @@
 {
     padding: 3px 5px;
     margin: 2px 0;
-
+    width: 200px;
     cursor: pointer;
     white-space: nowrap;
 }
 
 .b-employees-combobox__employee_select_yes
 {
-    margin: -1px 0;
-
+    /*margin: 0;*/
     background: rgb(227, 245, 254); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(227, 245, 254, 1) 0%, rgba(227, 245, 252, 1) 50%, rgba(209, 247, 255, 1) 51%, rgba(209, 247, 253, 1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(227, 245, 254, 1)), color-stop(50%, rgba(227, 245, 252, 1)), color-stop(51%, rgba(209, 247, 255, 1)), color-stop(100%, rgba(209, 247, 253, 1))); /* Chrome,Safari4+ */
@@ -174,6 +173,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e3f5fe', endColorstr='#d1f7fd', GradientType=0); /* IE6-9 */
 
     border: 1px solid #A6D6FF;
+    padding: 2px 4px;
 }
 
 .b-employees-combobox__employee:hover
@@ -192,7 +192,7 @@
 
 .b-employees-combobox__employee-pos
 {
-    width: 180px;
+    width: 160px;
     color: #999;
     overflow: hidden;
     white-space: nowrap;
