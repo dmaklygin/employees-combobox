@@ -6,7 +6,7 @@
         <link rel="stylesheet" href="blocks/b-employees-combobox/b-employees-combobox.css" />
         <link rel="stylesheet" href="blocks/i-jquery/__custom-scrollbar/i-jquery__custom-scrollbar.css" />
         <script type="text/javascript">data = {}</script>
-        <script src="data.js" type="text/javascript"></script>
+        <script src="mulitnested-company-data.js" type="text/javascript"></script>
         <style>
             * {
                 padding: 0;
@@ -23,7 +23,7 @@
             <h1 class="b-header">Комбобокс сотрудников</h1>
 
             <!-- TODO use templates -->
-            <div class="i-bem b-employees-combobox"
+            <div class="i-bem b-employees-combobox b-employees-combobox_multi_yes"
                 onclick="return { 'b-employees-combobox': { data: data, onSelect: function(idEmployee) { console.log(idEmployee) } } }">
 
                 <ul class="b-employees-combobox__selected-items"></ul>

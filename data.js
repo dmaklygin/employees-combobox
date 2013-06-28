@@ -1,6 +1,12 @@
 data = [
-    {"id": 74, "name": "Элит", "departments": [
-        {"id": 101, "name": "IT Отдел", "employees": [
+    {
+        "id": 74,
+        "name": "Элит",
+        "departments": [
+        {
+            "id": 101,
+            "name": "IT Отдел",
+            "employees": [
             {"id": 1, "fullName": "Андрейxzc Уруков", "avatarUrl": "https://s3.amazonaws.com/airplans-staging/avatars/s/1.jpg", "position": "Руководитель IT-проектов"},
             {"id": 25, "fullName": "Николайbh Делицкийm,", "avatarUrl": "https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position": "Программист"},
             {"id": 226, "fullName": "Александр Маруев", "avatarUrl": "https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position": "1С Программист"},

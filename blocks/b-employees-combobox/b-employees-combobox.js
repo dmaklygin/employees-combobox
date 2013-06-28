@@ -3,7 +3,9 @@ BEM.DOM.decl('b-employees-combobox', {
     onSetMod: {
 
         'js': function() {
+
             this._data = this.params.data;
+
             var employees = this._employees = [],
                 _this = this;
 
@@ -15,8 +17,15 @@ BEM.DOM.decl('b-employees-combobox', {
 
             this._input = this.elem('input');
             this._suggest = this.elem('suggest');
+
+            this._isMulti = this.hasMod('multi', 'yes');
+
+            this._values = this._input.val().split(',').filter(function(val) { return !!val; });
+
             this._val = this._input.val();
+
             this._current = 0;
+
             this._currentCompanyId = this._data[0].id;
 
             this._preventHide = false;
@@ -53,7 +62,8 @@ BEM.DOM.decl('b-employees-combobox', {
                     }
                 });
 
-            setInterval(function() { _this.inputVal(_this._input.val()) }, 200);
+            // @todo зачем интервал здесь?
+//            setInterval(function() { _this.inputVal(_this._input.val()) }, 200);
 
             this._refreshSuggest();
         }
@@ -93,22 +103,49 @@ BEM.DOM.decl('b-employees-combobox', {
 
         if (!emp) return;
 
+        if (this._isMulti) {
+            if (-1 === this._values.indexOf(id))
+                this._values.push(id);
+            else
+                return;
+        } else {
+            this._values = [id];
+        }
+
+        this.elem('value').val(this._values.join(','));
+
         this.params.onSelect && this.params.onSelect(id);
 
-        // set hidden input
-        this.elem('value').val(id);
+        if (this._isMulti) {
+            this.elem('selected-items').append(this.__self.getSelectedItemHtml(emp));
+        } else {
+            BEM.DOM.update(this.elem('selected-items'), this.__self.getSelectedItemHtml(emp));
+        }
 
-        BEM.DOM.update(this.elem('selected-items'), this.__self.getSelectedItemHtml(emp));
+        this.trigger('change');
 
         this._hideSuggest();
     },
 
+    removeEmployee: function(id) {
+
+        if (this._isMulti) {
+            this._values = this._values.filter(function (item) { return item != id });
+        } else {
+            this._values = [];
+        }
+
+        this.elem('value').val(this._values.join(','));
+
+        this.trigger('change');
+    },
+
+
     cancelSelected: function(id) {
 
-        this.findElem('selected-item', 'id', id).slideUp(200, $.proxy(this._focus, this));
+        this.removeEmployee(id);
 
-        // unset hidden input
-        this.elem('value').val('');
+        this.findElem('selected-item', 'id', id).slideUp(200, $.proxy(this._focus, this));
     },
 
     _moveCursor: function(direction) {
@@ -230,7 +267,7 @@ BEM.DOM.decl('b-employees-combobox', {
     inputVal: function(val) {
 
         if (typeof val == 'undefined') return this._val;
-
+        console.log(this._val , val);
         if (this._val != val) {
             this._input.val() != val && this._input.val(val);
             this._val = val;
@@ -255,7 +292,7 @@ BEM.DOM.decl('b-employees-combobox', {
         var input = this.elem('input')[0];
         if (input.createTextRange && !input.selectionStart) {
             var range = input.createTextRange();
-            range.move('character', input.value.length);
+            range.move('character', input.value.length)
             range.select();
         } else {
             input.focus();
