@@ -1,0 +1,13 @@
+.b-employees-combobox_multi_yes .b-employees-combobox__selected-item
+{
+    width: 43%;
+    display: inline-block;
+}
+
+.b-employees-combobox_multi_yes .b-employees-combobox__selected-item-name
+{
+    width: 48px;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+}
