@@ -325,3 +325,30 @@
     width: 1px;
     height: 32px;
 }
+
+
+.b-employees-combobox__input_size_small
+{
+    width: 43%;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    top: 0;
+    left: 0px;
+    height: 18px;
+    padding: 4px 6px;
+}
+
+.b-employees-combobox__selected-item_size_small
+{
+    width: 43%;
+    display: inline-block;
+}
+
+.b-employees-combobox__input-plus
+{
+    width: 16px;
+    height: 16px;
+    -webkit-mask-image: url(images/plus.png);
+    background: grey;
+}
