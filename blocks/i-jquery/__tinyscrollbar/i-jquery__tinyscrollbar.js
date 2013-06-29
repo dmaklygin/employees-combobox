@@ -30,8 +30,9 @@
             }
 
             this.update = function (sScroll) {
-                oViewport[options.axis] = oViewport.obj.content['offset' + sSize];
-                oContent[options.axis] = oContent.obj.content['scroll' + sSize];
+                console.log('oViewport.obj = ', oViewport.obj);
+                oViewport[options.axis] = oViewport.obj.context['offset' + sSize];
+                oContent[options.axis] = oContent.obj.context['scroll' + sSize];
                 oContent.ratio = oViewport[options.axis] / oContent[options.axis];
                 oScrollbar.obj.toggleClass('disable', oContent.ratio >= 1);
                 oTrack[options.axis] = options.size == 'auto' ? oViewport[options.axis] : options.size;
