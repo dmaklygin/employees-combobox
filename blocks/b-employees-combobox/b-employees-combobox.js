@@ -44,9 +44,9 @@ BEM.DOM.decl('b-employees-combobox', {
                     if (e.keyCode == 13) {
                         _this.selectEmployee(_this.getMod(_this.findElem('employee', 'select', 'yes'), 'id'));
 
-                        _this._hideSuggest();
+//                        _this._hideSuggest();
 
-                        _this._isMulti && _this._input.blur();
+                        _this._isMulti && _this._input.focus();
                     }
                 })
 
@@ -98,7 +98,7 @@ BEM.DOM.decl('b-employees-combobox', {
     _hideSuggest: function() {
         if (this._preventHide) {
             this._preventHide = false;
-            this._focus();
+            this.elem('input').focus();
         } else {
 
             this.setMod(this.elem('item-input'), 'selected', 'no');
@@ -134,13 +134,11 @@ BEM.DOM.decl('b-employees-combobox', {
             }))
             .insertBefore(this.elem('item-input'));
 
-        if (!this._isMulti) {
-            this.elem('item-input').hide();
-        }
+        this._isMulti || this.elem('item-input').hide();
+
+        this._isMulti || this._hideSuggest();
 
         this.trigger('change');
-
-        this._hideSuggest();
 
         return true;
     },
@@ -170,6 +168,8 @@ BEM.DOM.decl('b-employees-combobox', {
         if (!this._isMulti) {
             this.elem('item-input').show();
         }
+
+        this._preventHide = true;
 
         this.elem('input').focus();
     },
