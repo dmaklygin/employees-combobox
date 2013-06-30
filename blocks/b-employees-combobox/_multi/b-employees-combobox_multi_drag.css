@@ -5,9 +5,9 @@
 
 .b-employees-combobox_multi_drag .b-employees-combobox__selected-item
 {
-    width: 96%;
+    width: 87%;
     border: none;
-    padding: 1.5% 1%;
+    padding: 1.5% 1% 1.5% 10%;
     margin: 1% 1% 0 1%;
     vertical-align: top;
     cursor: pointer;
@@ -59,4 +59,27 @@
 .b-employees-combobox__item-input_selected_yes .b-employees-combobox__input-plus
 {
     background: url(../../../images/ic-search-gray.png) 0 0 no-repeat;
+}
+
+.b-employees-combobox__selected-item-position
+{
+    position: absolute;
+    width: 20px;
+    left: 0;
+    top: 7px;
+    font-size: 0.8em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.b-employees-combobox__selected-item-position-arrow
+{
+    position: absolute;
+    left: 0;
+    top: 16px;
+    z-index: 11;
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
 }

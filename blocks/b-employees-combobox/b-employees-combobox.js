@@ -108,18 +108,18 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     selectEmployee: function(id) {
-        if (!id) return;
+        if (!id) return false;
 
         var _this = this,
             emp = this._getEmployeeById(id);
 
-        if (!emp) return;
+        if (!emp) return false;
 
         if (this._isMulti) {
             if (-1 === this._values.indexOf(id))
                 this._values.push(id);
             else
-                return;
+                return false;
         } else {
             this._values = [id];
         }
@@ -128,7 +128,11 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.params.onSelect && this.params.onSelect(id);
 
-        $(this.__self.getSelectedItemHtml(emp, { isMulti: true })).insertBefore(this.elem('item-input'));
+        $(this.__self.getSelectedItemHtml(emp, {
+                isMulti: this._isMulti,
+                position: this._values.length
+            }))
+            .insertBefore(this.elem('item-input'));
 
         if (!this._isMulti) {
             this.elem('item-input').hide();
@@ -137,6 +141,8 @@ BEM.DOM.decl('b-employees-combobox', {
         this.trigger('change');
 
         this._hideSuggest();
+
+        return true;
     },
 
     removeEmployee: function(id) {
