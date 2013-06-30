@@ -171,7 +171,7 @@ BEM.DOM.decl('b-employees-combobox', {
             this.elem('item-input').show();
         }
 
-        this._focus();
+        this.elem('input').focus();
     },
 
     _moveCursor: function(direction) {
