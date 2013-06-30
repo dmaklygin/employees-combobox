@@ -27,8 +27,13 @@
             <div class="i-bem b-employees-combobox b-employees-combobox_multi_yes"
                 onclick="return { 'b-employees-combobox': { data: data, onSelect: function(idEmployee) { console.log(idEmployee) } } }">
 
-                <ul class="b-employees-combobox__selected-items"></ul>
-                <input class="b-employees-combobox__input" type="text" />
+                <ul class="b-employees-combobox__selected-items">
+                    <li class="b-employees-combobox__item-input">
+                        <input class="b-employees-combobox__input" type="text" />
+                        <div class="b-employees-combobox__input-plus"></div>
+                    </li>
+                </ul>
+
                 <input class="b-employees-combobox__value" type="hidden" />
                 <table cellspacing="0" rowspasing="0" class="b-employees-combobox__dropdown">
                     <tr>

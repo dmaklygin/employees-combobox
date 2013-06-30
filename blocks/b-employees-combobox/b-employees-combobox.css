@@ -23,6 +23,11 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#ffffff', GradientType=0); /* IE6-9 */
 }
 
+.b-employees-combobox__input:focus
+{
+    outline: 0;
+}
+
 
 .b-employees-combobox__dropdown
 {
@@ -343,12 +348,4 @@
 {
     width: 43%;
     display: inline-block;
-}
-
-.b-employees-combobox__input-plus
-{
-    width: 16px;
-    height: 16px;
-    -webkit-mask-image: url(images/plus.png);
-    background: grey;
 }
