@@ -3,7 +3,6 @@ BEM.DOM.decl('b-employees-combobox', {
     onSetMod: {
 
         'js': function() {
-
             this._data = this.params.data;
 
             var employees = this._employees = [],
@@ -18,7 +17,7 @@ BEM.DOM.decl('b-employees-combobox', {
             this._input = this.elem('input');
             this._suggest = this.elem('suggest');
 
-            this._isMulti = this.hasMod('multi', 'yes');
+            this._isMulti = this.hasMod('multi');
 
             this._values = this._input.val().split(',').filter(function(val) { return !!val; });
 
@@ -129,17 +128,15 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.params.onSelect && this.params.onSelect(id);
 
-        if (this._isMulti) {
-            $(this.__self.getSelectedItemHtml(emp, { isMulti: true })).insertBefore(this.elem('item-input'));
-//            this.elem('selected-items').append();
-        } else {
-            BEM.DOM.update(this.elem('selected-items'), this.__self.getSelectedItemHtml(emp, {}));
+        $(this.__self.getSelectedItemHtml(emp, { isMulti: true })).insertBefore(this.elem('item-input'));
+
+        if (!this._isMulti) {
+            this.elem('item-input').hide();
         }
 
         this.trigger('change');
 
         this._hideSuggest();
-
     },
 
     removeEmployee: function(id) {
@@ -158,9 +155,17 @@ BEM.DOM.decl('b-employees-combobox', {
 
     cancelSelected: function(id) {
 
+        var _this = this;
+
         this.removeEmployee(id);
 
-        this.findElem('selected-item', 'id', id).slideUp(200, $.proxy(this._focus, this));
+        this.findElem('selected-item', 'id', id).remove();
+
+        if (!this._isMulti) {
+            this.elem('item-input').show();
+        }
+
+        this._focus();
     },
 
     _moveCursor: function(direction) {
@@ -318,6 +323,10 @@ BEM.DOM.decl('b-employees-combobox', {
             input.focus();
         }
 
+    },
+
+    getSelectedItemId: function(node) {
+        return this.getMod($(node), 'id');
     }
 
 },
@@ -383,7 +392,14 @@ BEM.DOM.decl('b-employees-combobox', {
 
         var empCls = 'b-employees-combobox__employee';
 
-        if (!company || !company.departments.length) return 'Нет совпадений';
+        if (!company || !company.departments.length) {
+            return '<div class="b-employees-combobox__not-found">' +
+                'По запросу ' +
+                '<span  class="b-employees-combobox__search-string">&laquo;' +
+                options.name + '&raquo;</span>' +
+                ' поиск не дал результатов' +
+                '</div>';
+        }
 
         var htmlBuf = '<ul class="b-employees-combobox__departments-list content">';
 
@@ -406,7 +422,8 @@ BEM.DOM.decl('b-employees-combobox', {
 
                 if (options.name) {
 
-                    var upperFirstLetters = function (text) {
+                    var optionsName = options.name.toLowerCase(),
+                        upperFirstLetters = function (text) {
                         return text
                             .split(' ')
                             .map(function (word, index) {
@@ -417,12 +434,12 @@ BEM.DOM.decl('b-employees-combobox', {
 
                     name = name
                         .toLowerCase()
-                        .split(options.name)
+                        .split(optionsName)
                         .map(function (word, index) {
                             return index == 0 ?
                                 (word.length ?
-                                    upperFirstLetters(word) + '<strong>' + options.name + '</strong>' :
-                                    '<strong>' + upperFirstLetters(options.name) + '</strong>'
+                                    upperFirstLetters(word) + '<strong>' + optionsName + '</strong>' :
+                                    '<strong>' + upperFirstLetters(optionsName) + '</strong>'
                                 ) :
                                 word;
                         })

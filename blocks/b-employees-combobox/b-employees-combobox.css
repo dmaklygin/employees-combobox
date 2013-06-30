@@ -257,12 +257,9 @@
     position: absolute;
     right: 9px;
     top: 9px;
-
     width: 9px;
     height: 9px;
-
     cursor: pointer;
-
     background: url('../../images/ic-round-cross-small-grey.png');
 }
 
@@ -332,20 +329,15 @@
 }
 
 
-.b-employees-combobox__input_size_small
+.b-employees-combobox__not-found
 {
-    width: 43%;
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    top: 0;
-    left: 0px;
-    height: 18px;
-    padding: 4px 6px;
+    margin: 10%;
+    color: #666;
+    font-size: 0.9em;
 }
 
-.b-employees-combobox__selected-item_size_small
+.b-employees-combobox__search-string
 {
-    width: 43%;
-    display: inline-block;
+    color: #1c5aa1;
+    font-style: italic;
 }

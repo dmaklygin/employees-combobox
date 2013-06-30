@@ -1,0 +1,62 @@
+.b-employees-combobox_multi_drag .b-employees-combobox__selected-items
+{
+    border: 2px solid #e5e5e5;
+}
+
+.b-employees-combobox_multi_drag .b-employees-combobox__selected-item
+{
+    width: 96%;
+    border: none;
+    padding: 1.5% 1%;
+    margin: 1% 1% 0 1%;
+    vertical-align: top;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+         -o-user-select: none;
+            user-select: none;
+}
+
+.b-employees-combobox_multi_list .b-employees-combobox__selected-item-name
+{
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+}
+
+.b-employees-combobox_multi_drag .b-employees-combobox__item-input
+{
+    width: 96%;
+    position: relative;
+    vertical-align: top;
+    padding: 1.5% 1%;
+    margin: 0 1%;
+}
+
+.b-employees-combobox_multi_drag .b-employees-combobox__input
+{
+    width: 90%;
+    margin: 0;
+    padding: 0 0 0 16px;
+    border: none;
+    background: none;
+    height: 20px;
+}
+
+.b-employees-combobox_multi_drag .b-employees-combobox__input-plus
+{
+    width: 12px;
+    height: 12px;
+    background: url(../../../images/ic-plus.png) 0 0 no-repeat;
+    position: absolute;
+    top: 8px;
+    left: 3px;
+}
+
+
+.b-employees-combobox__item-input_selected_yes .b-employees-combobox__input-plus
+{
+    background: url(../../../images/ic-search-gray.png) 0 0 no-repeat;
+}

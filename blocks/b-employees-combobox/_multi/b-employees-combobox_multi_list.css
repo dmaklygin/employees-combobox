@@ -1,9 +1,9 @@
-.b-employees-combobox_multi_yes .b-employees-combobox__selected-items
+.b-employees-combobox_multi_list .b-employees-combobox__selected-items
 {
     border: 2px solid #e5e5e5;
 }
 
-.b-employees-combobox_multi_yes .b-employees-combobox__selected-item
+.b-employees-combobox_multi_list .b-employees-combobox__selected-item
 {
     width: 46%;
     display: inline-block;
@@ -13,16 +13,17 @@
     vertical-align: top;
 }
 
-.b-employees-combobox_multi_yes .b-employees-combobox__selected-item-name
+.b-employees-combobox_multi_list .b-employees-combobox__selected-item-name
 {
     width: 48px;
     display: inline-block;
     white-space: nowrap;
     overflow: hidden;
+    vertical-align: middle;
 }
 
 
-.b-employees-combobox_multi_yes .b-employees-combobox__item-input
+.b-employees-combobox_multi_list .b-employees-combobox__item-input
 {
     width: 46%;
     display: inline-block;
@@ -32,7 +33,7 @@
     margin: 1% 1% 0 1%;
 }
 
-.b-employees-combobox_multi_yes .b-employees-combobox__input
+.b-employees-combobox_multi_list .b-employees-combobox__input
 {
     width: 84%;
     margin: 0;
@@ -42,7 +43,7 @@
     height: 21px;
 }
 
-.b-employees-combobox_multi_yes .b-employees-combobox__input-plus
+.b-employees-combobox_multi_list .b-employees-combobox__input-plus
 {
     width: 16px;
     height: 16px;
