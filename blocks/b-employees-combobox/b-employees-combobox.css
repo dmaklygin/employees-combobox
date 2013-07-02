@@ -62,7 +62,7 @@
     overflow-x: hidden;
     width: 240px;
     max-height: 300px;
-    padding: 10px 0 14px 14px;
+    margin: 10px 0 14px 14px;
 }
 
 .b-employees-combobox__companies-wrap

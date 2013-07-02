@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scrollbar</title>
+    <link rel="stylesheet" href="blocks/i-jquery/__scrollbar/i-jquery__scrollbar.css" />
+    <link rel="stylesheet" href="blocks/i-jquery/__scrollbar/_hide/i-jquery__scrollbar_hide_yes.css" />
+    <style type="text/css">
+        div#scrollbar
+        {
+            width: 240px;
+            max-height: 300px;
+            border: 1px solid black;
+            overflow: hidden;
+        }
+
+        ul
+        {
+            margin: 0;
+            padding: 0;
+        }
+
+        li
+        {
+            margin: 5px;
+            background: green;
+            height: 50px;
+            list-style: none;
+        }
+    </style>
+    <script src="blocks/i-jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <script src="blocks/i-jquery/__scrollbar/i-jquery__scrollbar.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#scrollbar').scrollbar();
+
+            setTimeout(function() {
+                $('#scrollbar ul').append('<li/><li/><li/><li/><li/><li/><li/><li/>');
+                $('#scrollbar').scrollbar();
+
+                setTimeout(function() {
+                    $('#scrollbar ul').html('');
+                    $('#scrollbar').scrollbar();
+
+                    setTimeout(function() {
+                        $('#scrollbar ul').html('<li/><li/><li/><li/><li/><li/><li/><li/><li/><li/><li/><li/><li/><li/><li/><li/>');
+                        $('#scrollbar').scrollbar();
+                    }, 5000);
+
+                }, 5000);
+
+            }, 5000);
+        });
+    </script>
+</head>
+<body>
+    <div id="scrollbar">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</body>
+</html>

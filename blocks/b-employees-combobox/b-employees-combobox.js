@@ -75,9 +75,11 @@ BEM.DOM.decl('b-employees-combobox', {
     _scrollToCurrent: function(current) {
         current || (current = this.findElem('employee').eq(this._current));
 
-        current.length && this._suggest.scrollTop(current.position().top + this._suggest.scrollTop() - 5);
-
-        current.length && this.__scroller.mCustomScrollbar("scrollTo", current.position().top + this._suggest.scrollTop() - 5);
+        if (current.length) {
+            this.__scroller.scrollbar({
+                scrollTo: this.__scroller.data('scrollbar').content.scrollTop() + current.position().top - 25
+            });
+        }
     },
 
     _showSuggest: function(scrollOff) {
@@ -244,7 +246,7 @@ BEM.DOM.decl('b-employees-combobox', {
         }));
 
         window.setTimeout(function() {
-            _this.__scroller = _this._suggest.mCustomScrollbar();
+            _this.__scroller = _this._suggest.scrollbar({ forceUpdate: true });
         }, 0);
     },
 
@@ -353,8 +355,11 @@ BEM.DOM.decl('b-employees-combobox', {
 
                this.toggleMod(depDom, 'expand', 'on', 'off');
 
-               $('.b-employees-combobox__employees-list', depDom).slideToggle(200, hasSelected && function() {
-                   this._scrollToCurrent();
+               $('.b-employees-combobox__employees-list', depDom).slideToggle(200, function() {
+                   // update scroller
+                   this.__scroller.scrollbar();
+
+                   hasSelected && this._scrollToCurrent();
                }.bind(this));
 
                hasSelected && this._moveCursor('down');
