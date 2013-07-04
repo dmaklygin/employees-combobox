@@ -37,11 +37,8 @@
 
         this.content = this.element.children('.' + this.options.className + '__bar-content');
 
-        this._initHeight();
-
         this.barContainer = $('<div/>')
             .addClass(this.options.className + '__bar-container')
-            .css({ height: this.content.height() })
             .appendTo(this.element);
 
         this.barDragger = $('<div/>')
@@ -51,6 +48,8 @@
         this.barRail = $('<div/>')
             .addClass(this.options.className + '__bar-rail')
             .appendTo(this.barContainer);
+
+        this._initHeight();
 
         this.doc.find('body').css('overflow', 'hidden');
 
@@ -63,6 +62,10 @@
         this.contentHeight = this.content.children().outerHeight(false);
 
         this.containerHeight = this.element.height();
+
+        this.content.css('height', this.containerHeight + 'px');
+
+        this.barContainer.css('height', this.containerHeight + 'px');
     };
 
     scrollbar.prototype._initEvents = function() {

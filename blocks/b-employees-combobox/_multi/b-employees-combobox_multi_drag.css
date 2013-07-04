@@ -26,7 +26,7 @@
     vertical-align: middle;
 }
 
-.b-employees-combobox_multi_drag .b-employees-combobox__item-input
+.b-employees-combobox_multi_drag .b-employees-combobox__item-input_style_full
 {
     width: 96%;
     position: relative;
@@ -35,7 +35,7 @@
     margin: 0 1%;
 }
 
-.b-employees-combobox_multi_drag .b-employees-combobox__input
+.b-employees-combobox_multi_drag .b-employees-combobox__item-input_style_full .b-employees-combobox__input
 {
     width: 90%;
     margin: 0;
@@ -45,7 +45,7 @@
     height: 20px;
 }
 
-.b-employees-combobox_multi_drag .b-employees-combobox__input-plus
+.b-employees-combobox_multi_drag .b-employees-combobox__item-input_style_full .b-employees-combobox__input-plus
 {
     width: 12px;
     height: 12px;
@@ -53,12 +53,6 @@
     position: absolute;
     top: 8px;
     left: 3px;
-}
-
-
-.b-employees-combobox__item-input_selected_yes .b-employees-combobox__input-plus
-{
-    background: url(../../../images/ic-search-gray.png) 0 0 no-repeat;
 }
 
 .b-employees-combobox__selected-item-position

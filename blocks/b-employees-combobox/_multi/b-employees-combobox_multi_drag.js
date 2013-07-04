@@ -67,6 +67,10 @@ BEM.DOM.decl({
         this.findElem('selected-item-position-arrow')
             .show()
             .last().hide();
+    },
+
+    _updateInputStyle: function() {
+        this.setMod(this.elem('item-input'), 'style', !this._values.length && 'default' || 'full');
     }
 
 }, {
@@ -86,7 +90,7 @@ BEM.DOM.decl({
             '<div class="b-employees-combobox__selected-item-position">' + options.position + '</div>' +
             '<div class="b-employees-combobox__selected-item-position-arrow">&darr;</div>' +
             '<img src="' + employee.avatarUrl + '" height="18px" width="18px" />' +
-            '<span class="b-employees-combobox__selected-item-name">' + name + '</span>' +
+            '<span class="b-employees-combobox__selected-item-name" title="' + employee.fullName + '">' + name + '</span>' +
             '<div class="b-employees-combobox__cancel-selected"></div>' +
             '</li>';
     }

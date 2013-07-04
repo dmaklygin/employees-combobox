@@ -23,7 +23,7 @@
 }
 
 
-.b-employees-combobox_multi_list .b-employees-combobox__item-input
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_style_small
 {
     width: 46%;
     display: inline-block;
@@ -33,7 +33,8 @@
     margin: 1% 1% 0 1%;
 }
 
-.b-employees-combobox_multi_list .b-employees-combobox__input
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_style_full .b-employees-combobox__input,
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_style_small .b-employees-combobox__input
 {
     width: 84%;
     margin: 0;
@@ -43,7 +44,8 @@
     height: 21px;
 }
 
-.b-employees-combobox_multi_list .b-employees-combobox__input-plus
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_style_full .b-employees-combobox__input-plus,
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_style_small .b-employees-combobox__input-plus
 {
     width: 16px;
     height: 16px;
@@ -51,10 +53,4 @@
     position: absolute;
     top: 8px;
     left: 3px;
-}
-
-
-.b-employees-combobox__item-input_selected_yes .b-employees-combobox__input-plus
-{
-    background: url(../../../images/ic-search-gray.png) 0 0 no-repeat;
 }
