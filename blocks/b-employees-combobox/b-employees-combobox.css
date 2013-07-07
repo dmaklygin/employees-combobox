@@ -257,7 +257,7 @@
     padding: 4px 6px;
 
     color: #444;
-
+    line-height: 1.4em;
     background: rgb(243, 243, 243); /* Old browsers */
     background: -moz-linear-gradient(top, rgba(243, 243, 243, 1) 0%, rgba(247, 247, 247, 1) 23%, rgba(230, 230, 230, 1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(243, 243, 243, 1)), color-stop(23%, rgba(247, 247, 247, 1)), color-stop(100%, rgba(230, 230, 230, 1))); /* Chrome,Safari4+ */
@@ -268,26 +268,34 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f3f3f3', endColorstr='#e6e6e6', GradientType=0); /* IE6-9 */
 }
 
-.b-employees-combobox__selected-item-name
+.b-employees-combobox__selected-item img
 {
-    position: relative;
-    top: -4px;
-
-    margin-left: 8px;
+    display: inline-block;
+    vertical-align: middle;
 }
 
-.b-employees-combobox__cancel-selected
+.b-employees-combobox__selected-item-name
 {
-    position: absolute;
-    right: 9px;
-    top: 9px;
+    width: 83%;
+    display: inline-block;
+    margin: 0 0 0 2px;
+    vertical-align: middle;
+}
+
+.b-employees-combobox__cancel-selected,
+.b-employees-combobox__dep-cancel-selected
+{
+    display: inline-block;
+    vertical-align: middle;
     width: 9px;
     height: 9px;
     cursor: pointer;
+    margin-left: 2px;
     background: url('../../images/ic-round-cross-small-grey.png');
 }
 
-.b-employees-combobox__cancel-selected:hover
+.b-employees-combobox__cancel-selected:hover,
+.b-employees-combobox__dep-cancel-selected:hover
 {
     background: url('../../images/ic-round-cross-small.png');
 }

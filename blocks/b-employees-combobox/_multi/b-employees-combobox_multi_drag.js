@@ -10,6 +10,10 @@ BEM.DOM.decl({
 
             var _this = this;
 
+            this.params = $.extend({
+                smallPlaceholder: 'Add'
+            }, this.params);
+
             this.__base();
 
             this.elem('selected-items').sortable({
@@ -22,6 +26,21 @@ BEM.DOM.decl({
         }
 
     },
+
+    onElemSetMod: {
+        input: {
+            status: function(input, modName, modVal) {
+                input.attr('placeholder', modVal === 'active' ?
+                    this.params.activePlaceholder :
+                    (['full'].indexOf(this.getMod(this.elem('item-input'), 'style')) !== -1 ?
+                        this.params.smallPlaceholder :
+                        this.params.defaultPlaceholder
+                        )
+                );
+            }
+        }
+    },
+
 
     _initEvents: function() {
         this.__base();
@@ -47,11 +66,22 @@ BEM.DOM.decl({
 
         this._values = values;
 
-        this.elem('value').val(this._values.join(','));
+        this._renderValues();
 
         this.reorderPositions();
 
         this.trigger('change');
+    },
+
+    selectDepartment: function(id) {
+
+        if (true !== this.__base(id)) {
+            return false;
+        }
+
+        this.reorderPositions();
+
+        return true;
     },
 
     selectEmployee: function(id) {
@@ -87,7 +117,7 @@ BEM.DOM.decl({
     }
 
 }, {
-    // TODO use templates
+
     getSelectedItemHtml: function(employee, options) {
 
         var name = employee.fullName;
@@ -106,5 +136,17 @@ BEM.DOM.decl({
             '<span class="b-employees-combobox__selected-item-name" title="' + employee.fullName + '">' + name + '</span>' +
             '<div class="b-employees-combobox__cancel-selected"></div>' +
             '</li>';
+    },
+
+    getSelectedDepartmentItemHtml: function(department, options) {
+        var cls = 'b-employees-combobox__selected-item';
+
+        return '<li class="' + cls + ' ' + cls + '_type_department ' + cls + '_id-dep_' + department.id + '">' +
+            '<div class="' + cls + '-position">' + options.position + '</div>' +
+            '<div class="' + cls + '-position-arrow">&darr;</div>' +
+            '<span class="' + cls + '-name" title="' + department.name + '">' + department.name + '</span>' +
+            '<div class="b-employees-combobox__dep-cancel-selected"></div>' +
+            '</li>';
+
     }
 });
