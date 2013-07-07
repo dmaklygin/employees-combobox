@@ -350,14 +350,24 @@ BEM.DOM.decl('b-employees-combobox', {
     _refreshSuggest: function() {
         var _this = this,
             matched = this._getMatchedEmployee(),
-            count = 0,
+            activeCompany = null,
             company;
 
         $.each(matched, function(nc, company) {
-            $.each(company.departments, function(nd, dep) {
-                count += dep.employees.length;
-            });
+            if (company.id == _this._currentCompanyId && company.cnt > 0) {
+                activeCompany = _this._currentCompanyId;
+                return false;
+            }
         });
+
+        activeCompany || $.each(matched, function(nc, company) {
+            if (company.cnt > 0) {
+                activeCompany = company.id;
+                return false;
+            }
+        });
+
+        this._currentCompanyId = activeCompany || this._currentCompanyId;
 
         for (var i = 0, l = matched.length; i < l; i++) {
             if (matched[i].id == this._currentCompanyId) {
@@ -375,38 +385,53 @@ BEM.DOM.decl('b-employees-combobox', {
             isMulti: this._isMulti
         }));
 
-//        setTimeout(function() {
-            _this.__scroller = _this._suggest.scrollbar({ forceUpdate: true });
-//        }, 50);
+        _this.__scroller = _this._suggest.scrollbar({ forceUpdate: true });
     },
 
+    /**
+     * [
+     *   company
+     *          ->
+     * ]
+     * @return {*}
+     * @private
+     */
     _getMatchedEmployee: function() {
-
-        if (!this._val.length) return this._data;
 
         var res = [],
             _this = this,
-            val = _this._val.toLowerCase();
+            val = _this._val && _this._val.toLowerCase();
 
         $.each(this._data, function(nc, company) {
-            var matchedDepartments = [];
-
+            var matchedDepartments = [],
+                cntEmployees = 0;
             $.each(company.departments, function(nd, dep) {
                 var matchedEmployees = [];
-
+                if (_this._values.indexOf(dep.id + 'd') !== -1) {
+                    return;
+                }
                 $.each(dep.employees, function(ne, emp) {
+                    if (_this._values.indexOf(emp.id + 'e') !== -1) {
+                        return;
+                    }
                     var name = emp.fullName.toLowerCase(),
                         words = name.split(' '),
                         matchFlag = false;
 
-                    words.push(name);
+                    if (val) {
+                        words.push(name);
+                        words.forEach(function(w) {
+                            w.indexOf(val) || (matchFlag = true)
+                        });
 
-                    words.forEach(function(w) {
-                        w.indexOf(val) || (matchFlag = true)
-                    });
+                    } else {
+                        matchFlag = true;
+                    }
 
                     matchFlag && matchedEmployees.push(emp);
                 });
+
+                cntEmployees += matchedEmployees.length;
 
                 matchedEmployees.length && matchedDepartments.push({
                     name: dep.name,
@@ -418,7 +443,8 @@ BEM.DOM.decl('b-employees-combobox', {
             res.push({
                 name: company.name,
                 id: company.id,
-                departments: matchedDepartments
+                departments: matchedDepartments,
+                cnt: cntEmployees
             });
         });
 
@@ -560,15 +586,10 @@ BEM.DOM.decl('b-employees-combobox', {
             cls = 'b-employees-combobox__company';
 
         $.each(list, function(nc, company) {
-            var cnt = 0;
-
-            $.each(company.departments, function(nd, dep) {
-                cnt += dep.employees.length
-            });
 
             htmlBuf +=
                 '<li class="' + cls + ' ' + cls + '_id_' + company.id + (cidCurrent == company.id ? ' ' + cls + '_select_yes' : '') + '">' +
-                    '<span class="b-employees-combobox__company-matched">' + cnt + '</span>' +
+                    '<span class="b-employees-combobox__company-matched">' + company.cnt + '</span>' +
                     '<span class="b-employees-combobox__company-name">' + company.name + '</span>' +
                     '<i class="b-employees-combobox__arrow"></i>' +
                 '</li>';
@@ -580,16 +601,9 @@ BEM.DOM.decl('b-employees-combobox', {
     // TODO use templates
     getSuggestHtml: function(company, options) {
 
-        var empCls = 'b-employees-combobox__employee',
-            departments = [];
+        var empCls = 'b-employees-combobox__employee';
 
-        company && company.departments && options.selectedValues && $.each(company.departments, function(nc, department) {
-            if (options.selectedValues.indexOf(department.id + 'd') === -1) {
-                departments.push(department);
-            }
-        });
-
-        if (!company || !departments.length) {
+        if (!company || !company.departments.length) {
             return '<div class="b-employees-combobox__not-found">' +
                 'По запросу ' +
                 '<span  class="b-employees-combobox__search-string">&laquo;' +
@@ -600,7 +614,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
         var htmlBuf = '<ul class="b-employees-combobox__departments-list content">';
 
-        $.each(departments, function(nd, dep) {
+        $.each(company.departments, function(nd, dep) {
 
             if (!dep.employees) return;
 
@@ -612,10 +626,6 @@ BEM.DOM.decl('b-employees-combobox', {
                         '<ul class="b-employees-combobox__employees-list">';
 
             $.each(dep.employees, function(ne, emp) {
-
-                if (options.selectedValues && options.selectedValues.indexOf(emp.id.toString() + 'e') !== -1) {
-                    return;
-                }
 
                 var name = emp.fullName;
 
