@@ -10,7 +10,7 @@
     padding: 1.5% 1% 1.5% 10%;
     margin: 1% 1% 0 1%;
     vertical-align: top;
-    cursor: pointer;
+    cursor: url('https://ssl.gstatic.com/tasks/openhand.cur'), pointer;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -55,6 +55,16 @@
     left: 3px;
 }
 
+.b-employees-combobox_multi_drag .b-employees-combobox__item-input_selected_yes .b-employees-combobox__input-plus
+{
+    width: 6%;
+    height: 16px;
+    background: url(../../../images/ic-search-gray.png) 0 0 no-repeat !important;
+    position: absolute;
+    top: 26%;
+    left: 2%;
+}
+
 .b-employees-combobox__selected-item-position
 {
     position: absolute;
@@ -76,4 +86,14 @@
     text-align: center;
     font-weight: bold;
     font-size: 1.1em;
+}
+
+.b-employees-combobox__item-input_selected_no.b-employees-combobox__item-input_style_full.b-employees-combobox__item-input_hover_no
+{
+    opacity: 0.3;
+}
+
+.b-employees-combobox__item-input_selected_no.b-employees-combobox__item-input_hover_yes
+{
+    opacity: 1;
 }

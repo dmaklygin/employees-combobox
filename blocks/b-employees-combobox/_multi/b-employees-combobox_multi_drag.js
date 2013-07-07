@@ -23,6 +23,19 @@ BEM.DOM.decl({
 
     },
 
+    _initEvents: function() {
+        this.__base();
+
+        this
+            .bindTo('item-input', 'mouseover', function() {
+                this.setMod(this.elem('item-input'), 'hover', 'yes');
+            })
+            .bindTo('item-input', 'mouseout', function() {
+                this.setMod(this.elem('item-input'), 'hover', 'no');
+            });
+
+    },
+
     afterSorting: function (event, ui) {
 
         var _this = this,

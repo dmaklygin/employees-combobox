@@ -28,29 +28,61 @@
     width: 46%;
     display: inline-block;
     position: relative;
+    overflow: hidden;
     vertical-align: top;
     padding: 1.5% 1%;
     margin: 1% 1% 0 1%;
 }
 
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_style_full
+{
+    position: relative;
+    vertical-align: top;
+    overflow: hidden;
+    padding: 1.5% 1%;
+    margin: 1% 1% 0 1%;
+}
+
+
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_full .b-employees-combobox__input,
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_small .b-employees-combobox__input
 {
-    width: 84%;
+    width: 94%;
     margin: 0;
-    padding: 0 0 0 20px;
     border: none;
     background: none;
     height: 21px;
+    padding: 0 0 0 14px;
 }
+
+
 
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_full .b-employees-combobox__input-plus,
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_small .b-employees-combobox__input-plus
 {
-    width: 16px;
-    height: 16px;
-    background: url(../../../images/ic-plus.png) 0 0 no-repeat;
-    position: absolute;
     top: 8px;
     left: 3px;
+    width: 10px;
+    height: 10px;
+    background: url(../../../images/ic-plus.png) 0 0 no-repeat;
+    position: absolute;
+}
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_selected_yes.b-employees-combobox__item-input_style_full .b-employees-combobox__input-plus,
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_selected_yes.b-employees-combobox__item-input_style_small .b-employees-combobox__input-plus
+{
+    top: 7px;
+    left: 2px;
+    width: 12px;
+    height: 12px;
+}
+
+.b-employees-combobox__item-input_selected_no.b-employees-combobox__item-input_style_full.b-employees-combobox__item-input_hover_no,
+.b-employees-combobox__item-input_selected_no.b-employees-combobox__item-input_style_small.b-employees-combobox__item-input_hover_no
+{
+    opacity: 0.3;
+}
+
+.b-employees-combobox__item-input_selected_no.b-employees-combobox__item-input_hover_yes
+{
+    opacity: 1;
 }
