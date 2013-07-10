@@ -1,3 +1,8 @@
+.b-employees-combobox_multi_list .b-employees-combobox__department-name:hover
+{
+    text-decoration: underline;
+}
+
 .b-employees-combobox_multi_list .b-employees-combobox__selected-items
 {
     border: 2px solid #e5e5e5;

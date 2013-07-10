@@ -85,7 +85,7 @@
 {
     overflow-y: auto;
     overflow-x: hidden;
-    width: 240px;
+    /*width: 240px;*/
     height: 300px;
     margin: 10px 0 14px 14px;
 }
@@ -148,7 +148,7 @@
 
 .b-employees-combobox__department
 {
-    width: 240px;
+    /*width: 240px;*/
     margin-bottom: 10px;
     border-bottom: 1px solid #e1e1e1;
 }
@@ -176,9 +176,19 @@
     background: url('../../images/expander-up.png') 0 3px no-repeat;
 }
 
+.b-employees-combobox__departments-list_type_child
+{
+    margin-left: 20px;
+}
+
+.b-employees-combobox__departments-list_type_child .b-employees-combobox__department
+{
+    border: none;
+}
+
 .b-employees-combobox__employees-list
 {
-    margin-left: 15px;
+    margin: 0 10px 0 15px;
 }
 
 .b-employees-combobox__employee
