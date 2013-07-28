@@ -23,9 +23,9 @@ BEM.DOM.decl('b-employees-combobox', {
 
             this._isMulti = this.hasMod('multi');
 
-            this._values = this._input.val().split(',').filter(function(val) { return !!val; });
+            this._values = (this.params.value || '').split(',').filter(function(val) { return !!val; });
 
-            this._departmentsValues = [];
+            this._initValues();
 
             this._val = this._input.val();
 
@@ -53,6 +53,19 @@ BEM.DOM.decl('b-employees-combobox', {
                     this.params.defaultPlaceholder)
             }
         }
+    },
+
+    _initValues: function() {
+
+        var _this = this;
+
+        this._values.forEach(function(value) {
+            if (-1 !== value.indexOf('d')) {
+                _this.selectDepartment(value.replace('d', ''));
+            } else if (-1 !== value.indexOf('e')) {
+                _this.selectEmployee(value.replace('e', ''));
+            }
+        });
     },
 
     _initData: function() {
@@ -175,9 +188,6 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     _renderValues: function() {
-
-        var values = [];
-
         this.elem('value').val(this._values.join(','));
     },
 
@@ -487,41 +497,6 @@ BEM.DOM.decl('b-employees-combobox', {
         $.each(this._data, function(nc, company) {
             var matchedDepartments,
                 cntEmployees = 0;
-//            $.each(company.departments, function(nd, dep) {
-//                var matchedEmployees = [];
-//                if (_this._values.indexOf(dep.id + 'd') !== -1) {
-//                    return;
-//                }
-//                $.each(dep.employees, function(ne, emp) {
-//                    if (_this._values.indexOf(emp.id + 'e') !== -1) {
-//                        return;
-//                    }
-//                    var name = emp.fullName.toLowerCase(),
-//                        words = name.split(' '),
-//                        matchFlag = false;
-//
-//                    if (val) {
-//                        words.push(name);
-//                        words.forEach(function(w) {
-//                            w.indexOf(val) || (matchFlag = true)
-//                        });
-//
-//                    } else {
-//                        matchFlag = true;
-//                    }
-//
-//                    matchFlag && matchedEmployees.push(emp);
-//                });
-//
-//                cntEmployees += matchedEmployees.length;
-//
-//                matchedEmployees.length && matchedDepartments.push({
-//                    name: dep.name,
-//                    id: dep.id,
-//                    departments: dep.departments,
-//                    employees: matchedEmployees
-//                });
-//            });
 
             matchedDepartments = getMatchedDepartments(company.departments);
 
@@ -553,6 +528,10 @@ BEM.DOM.decl('b-employees-combobox', {
         }
 
         return this;
+    },
+
+    getValue: function() {
+        return this.elem('value').val();
     },
 
     _getEmployeeById: function(id) {
