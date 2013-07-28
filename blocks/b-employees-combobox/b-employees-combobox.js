@@ -17,15 +17,15 @@ BEM.DOM.decl('b-employees-combobox', {
 
             this._input = this.elem('input');
 
-            this.setMod(this._input, 'status', 'inactive');
-
             this._suggest = this.elem('suggest');
 
             this._isMulti = this.hasMod('multi');
 
-            this._values = (this.params.value || '').split(',').filter(function(val) { return !!val; });
+            this._values = [];
 
             this._initValues();
+
+            this.setMod(this._input, 'status', 'inactive');
 
             this._val = this._input.val();
 
@@ -59,13 +59,15 @@ BEM.DOM.decl('b-employees-combobox', {
 
         var _this = this;
 
-        this._values.forEach(function(value) {
+        (this.params.value || '').split(',').filter(function(val) { return !!val; }).forEach(function(value) {
             if (-1 !== value.indexOf('d')) {
                 _this.selectDepartment(value.replace('d', ''));
             } else if (-1 !== value.indexOf('e')) {
                 _this.selectEmployee(value.replace('e', ''));
             }
         });
+
+        _this._updateInputStyle();
     },
 
     _initData: function() {
@@ -191,7 +193,7 @@ BEM.DOM.decl('b-employees-combobox', {
         this.elem('value').val(this._values.join(','));
     },
 
-    selectDepartment: function(id) {
+    selectDepartment: function(id, silent) {
 
         if (!id) return false;
 
@@ -256,12 +258,12 @@ BEM.DOM.decl('b-employees-combobox', {
         }))
             .insertBefore(this.elem('item-input'));
 
-        this.trigger('change');
+        silent || this.trigger('change');
 
         return true;
     },
 
-    selectEmployee: function(id) {
+    selectEmployee: function(id, silent) {
         if (!id) return false;
 
         var _this = this,
@@ -294,7 +296,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this._isMulti || this._hideSuggest();
 
-        this.trigger('change');
+        silent || this.trigger('change');
 
         return true;
     },
@@ -534,6 +536,35 @@ BEM.DOM.decl('b-employees-combobox', {
         return this.elem('value').val();
     },
 
+    setValue: function(value) {
+
+        var _this = this,
+            values = (value || '').split(',').filter(function(val) { return !!val; }),
+            success = true;
+
+        this._clear();
+
+        values.forEach(function(value) {
+            if (-1 !== value.indexOf('d')) {
+                if (!_this.selectDepartment(value.replace('d', ''), true)) {
+                    success = false;
+                }
+            } else if (-1 !== value.indexOf('e')) {
+                if (!_this.selectEmployee(value.replace('e', ''), true)) {
+                    success = false;
+                }
+            }
+        });
+
+        if (!success) {
+            this.elem('item-input').show();
+        }
+
+        _this._updateInputStyle();
+
+        this.trigger('change');
+    },
+
     _getEmployeeById: function(id) {
         var data = this._employees,
             searchEmployee = function (emp) {
@@ -596,13 +627,17 @@ BEM.DOM.decl('b-employees-combobox', {
 
     },
 
-    _reset: function() {
-
+    _clear: function() {
         this._values = [];
 
         this.elem('value').val('');
 
         this.findElem('selected-item').remove();
+    },
+
+    _reset: function() {
+
+        this._clear();
 
         this._hideSuggest();
 

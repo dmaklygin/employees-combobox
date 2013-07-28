@@ -90,6 +90,10 @@
             bemCombo.on('change', function() {
                 value(bemCombo.getValue());
             });
+        },
+        update: function(element, valueAccessor, allBindingsAccessor) {
+            var bemCombo = $(element).bem('b-employees-combobox');
+            bemCombo.setValue(ko.utils.unwrapObservable(valueAccessor()));
         }
     };
 
