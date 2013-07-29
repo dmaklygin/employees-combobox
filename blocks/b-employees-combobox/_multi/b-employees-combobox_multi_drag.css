@@ -31,13 +31,13 @@
 
 .b-employees-combobox_multi_drag .b-employees-combobox__selected-item-name
 {
-    width: 82%;
+    width: 78%;
     white-space: nowrap;
     overflow: hidden;
 }
 .b-employees-combobox_multi_drag .b-employees-combobox__selected-item_type_department .b-employees-combobox__selected-item-name
 {
-    width: 92%;
+    width: 90%;
 }
 
 .b-employees-combobox_multi_drag .b-employees-combobox__item-input_style_full
@@ -71,7 +71,7 @@
 
 .b-employees-combobox_multi_drag .b-employees-combobox__item-input_selected_yes .b-employees-combobox__input-plus
 {
-    width: 6%;
+    width: 16px;
     height: 16px;
     background: url(../../../images/ic-search-gray.png) 0 0 no-repeat !important;
     position: absolute;

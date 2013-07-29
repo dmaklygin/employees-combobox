@@ -1,7 +1,7 @@
 .b-employees-combobox
 {
     position: relative;
-    width: 200px;
+    width: 100%;
 }
 
 .b-employees-combobox__item-input
@@ -40,7 +40,7 @@
 
 .b-employees-combobox__item-input_selected_yes .b-employees-combobox__input-plus
 {
-    width: 6%;
+    width: 16px;
     height: 16px;
     background: url(../../images/ic-search-gray.png) 0 0 no-repeat !important;
     position: absolute;
@@ -259,7 +259,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 101%;
+    width: 98%;
     border: 2px solid #e5e5e5;
     background-color: #fff;
 }
@@ -291,9 +291,9 @@
 
 .b-employees-combobox__selected-item-name
 {
-    width: 83%;
+    width: 79%;
     display: inline-block;
-    margin: 0 0 0 2px;
+    margin: 0 0 0 2%;
     vertical-align: middle;
 }
 
@@ -305,7 +305,7 @@
     width: 9px;
     height: 9px;
     cursor: pointer;
-    margin-left: 2px;
+    margin-left: 2%;
     background: url('../../images/ic-round-cross-small-grey.png');
 }
 

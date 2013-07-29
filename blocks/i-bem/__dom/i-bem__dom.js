@@ -1276,7 +1276,6 @@ var DOM = BEM.DOM = BEM.decl('i-bem__dom',/** @lends BEM.DOM.prototype */{
             });
             return _this;
         }
-
         return _this._liveClassBind(
             buildClass(_this._name, to.elem, to.modName, to.modVal),
             event,

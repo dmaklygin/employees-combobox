@@ -25,27 +25,31 @@
         <div class="b-page">
             <h1 class="b-header">Комбобокс сотрудников</h1>
 
-            <!-- TODO use templates -->
-            <div class="i-bem b-employees-combobox b-employees-combobox_multi_drag"
-                onclick="return { 'b-employees-combobox': { data: data, defaultPlaceholder: 'Инициатор',smallPlaceholder: 'Добавить',  activePlaceholder: 'Начните вводить имя', onSelect: function(idEmployee) { console.log(idEmployee) } } }">
+            <div style="width: 178px; height: 100px; border: 1px solid black; padding: 10px; overflow: hidden;">
 
-                <ul class="b-employees-combobox__selected-items"><li class="b-employees-combobox__item-input">
-                        <input class="b-employees-combobox__input" type="text" />
-                        <div class="b-employees-combobox__input-plus"></div>
-                </li></ul>
+                <div class="i-bem b-employees-combobox b-employees-combobox_multi_drag"
+                    onclick="return { 'b-employees-combobox': { data: data, defaultPlaceholder: 'Инициатор',smallPlaceholder: 'Добавить',  activePlaceholder: 'Начните вводить имя', onSelect: function(idEmployee) { console.log(idEmployee) } } }">
 
-                <input class="b-employees-combobox__value" type="hidden" />
-                <table cellspacing="0" rowspasing="0" class="b-employees-combobox__dropdown">
-                    <tr>
-                        <td class="b-employees-combobox__companies-wrap">
-                            <ul class="b-employees-combobox__companies"></ul>
-                        </td>
-                        <td class="b-employees-combobox__suggest-wrap">
-                            <div class="b-employees-combobox__suggest nano"></div>
-                        </td>
-                    </tr>
-                </table>
+                    <ul class="b-employees-combobox__selected-items"><li class="b-employees-combobox__item-input">
+                            <input class="b-employees-combobox__input" type="text" />
+                            <div class="b-employees-combobox__input-plus"></div>
+                    </li></ul>
+
+                    <input class="b-employees-combobox__value" type="hidden" />
+                    <table cellspacing="0" rowspasing="0" class="b-employees-combobox__dropdown">
+                        <tr>
+                            <td class="b-employees-combobox__companies-wrap">
+                                <ul class="b-employees-combobox__companies"></ul>
+                            </td>
+                            <td class="b-employees-combobox__suggest-wrap">
+                                <div class="b-employees-combobox__suggest nano"></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
             </div>
+
         </div>
 
         <script src="blocks/i-jquery/jquery-1.8.3.min.js" type="text/javascript"></script>

@@ -20,14 +20,14 @@
 
 .b-employees-combobox_multi_list .b-employees-combobox__selected-item-name
 {
-    width: 61px;
+    width: 61%;
     white-space: nowrap;
     overflow: hidden;
 }
 
 .b-employees-combobox_multi_list .b-employees-combobox__selected-item_type_department .b-employees-combobox__selected-item-name
 {
-    width: 80px;
+    width: 84%;
     margin: 0;
 }
 
