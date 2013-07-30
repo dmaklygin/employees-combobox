@@ -314,7 +314,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.params.onSelect && this.params.onSelect(id, 'department');
 
-        $(this.__self.getSelectedDepartmentItemHtml(this._getDepartmentById(id), {
+        $(this.getSelectedDepartmentItemHtml(this._getDepartmentById(id), {
             isMulti: this._isMulti,
             position: this._values.length
         }))
@@ -348,7 +348,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.params.onSelect && this.params.onSelect(id, 'employee');
 
-        $(this.__self.getSelectedItemHtml(emp, {
+        $(this.getSelectedItemHtml(emp, {
                 isMulti: this._isMulti,
                 position: this._values.length
             }))
@@ -485,8 +485,8 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this._current = 0;
 
-        BEM.DOM.update(this._companies, this.__self.getCompaniesHtml(matched, this._currentCompanyId));
-        BEM.DOM.update(this._suggest, this.__self.getSuggestHtml(company, {
+        BEM.DOM.update(this._companies, this.getCompaniesHtml(matched, this._currentCompanyId));
+        BEM.DOM.update(this._suggest, this.getSuggestHtml(company, {
             name: this._val,
             selectedValues: this._values,
             isMulti: this._isMulti
@@ -726,27 +726,9 @@ BEM.DOM.decl('b-employees-combobox', {
         }
 
         return id + 'e';
-    }
+    },
 
-},
-{
-   live: function() { console.log(this._name);
-       this
-//           .liveBindTo('employee', 'mousedown', function(e) {
-//               console.log('employee mousedown');
-//               this.selectEmployee(this.getMod(e.data.domElem, 'id'));
-//           })
-           .liveBindTo('cancel-selected', 'mousedown', function(e) {
-               this.cancelEmployeeSelected(this.getMod(e.data.domElem.parent(), 'id'));
-           })
-           .liveBindTo('dep-cancel-selected', 'mousedown', function(e) {
-               this.cancelDepartmentSelected(this.getMod(e.data.domElem.parent(), 'id-dep'));
-           });
 
-       return false;
-   },
-
-    // TODO use templates
     getCompaniesHtml: function(list, cidCurrent) {
         var htmlBuf = '',
             cls = 'b-employees-combobox__company';
@@ -758,13 +740,12 @@ BEM.DOM.decl('b-employees-combobox', {
                     '<span class="b-employees-combobox__company-matched">' + company.cnt + '</span>' +
                     '<span class="b-employees-combobox__company-name">' + company.name + '</span>' +
                     '<i class="b-employees-combobox__arrow"></i>' +
-                '</li>';
+                    '</li>';
         });
 
         return htmlBuf;
     },
 
-    // TODO use templates
     getSuggestHtml: function(company, options) {
 
         if (!company || !company.departments.length) {
@@ -834,7 +815,7 @@ BEM.DOM.decl('b-employees-combobox', {
                                     '<div class="b-employees-combobox__employee-name">' + name + '</div>' +
                                     '<div class="b-employees-combobox__employee-pos" title="' + emp.position + '">' + emp.position + '</div>' +
                                     '</div>' +
-                                '</li>';
+                                    '</li>';
                         });
                         depHtml += '</ul>';
                     }
@@ -860,7 +841,7 @@ BEM.DOM.decl('b-employees-combobox', {
         return htmlBuf;
     },
 
-    // TODO use templates
+
     getSelectedItemHtml: function(employee, options) {
 
         var name = employee.fullName;
@@ -876,16 +857,43 @@ BEM.DOM.decl('b-employees-combobox', {
             '<img src="' + employee.avatarUrl + '" height="18px" width="18px" />' +
             '<span class="b-employees-combobox__selected-item-name" title="' + employee.fullName + '">' + name + '</span>' +
             '<div class="b-employees-combobox__cancel-selected"></div>' +
-        '</li>';
+            '</li>';
     },
 
     getSelectedDepartmentItemHtml: function(department, options) {
         var cls = 'b-employees-combobox__selected-item';
 
         return '<li class="' + cls + ' ' + cls + '_type_department ' + cls + '_id-dep_' + department.id + '">' +
-                '<span class="' + cls + '-name" title="' + department.name + '">' + department.name + '</span>' +
-                '<div class="b-employees-combobox__dep-cancel-selected"></div>' +
+            '<span class="' + cls + '-name" title="' + department.name + '">' + department.name + '</span>' +
+            '<div class="b-employees-combobox__dep-cancel-selected"></div>' +
             '</li>';
 
     }
+
+},
+{
+   live: function() { console.log(this._name);
+       this
+//           .liveBindTo('employee', 'mousedown', function(e) {
+//               console.log('employee mousedown');
+//               this.selectEmployee(this.getMod(e.data.domElem, 'id'));
+//           })
+           .liveBindTo('cancel-selected', 'mousedown', function(e) {
+               this.cancelEmployeeSelected(this.getMod(e.data.domElem.parent(), 'id'));
+           })
+           .liveBindTo('dep-cancel-selected', 'mousedown', function(e) {
+               this.cancelDepartmentSelected(this.getMod(e.data.domElem.parent(), 'id-dep'));
+           });
+
+       return false;
+   },
+
+    // TODO use templates
+
+
+    // TODO use templates
+
+
+    // TODO use templates
+
 });

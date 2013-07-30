@@ -114,9 +114,7 @@ BEM.DOM.decl({
 
     _updateInputStyle: function() {
         this.setMod(this.elem('item-input'), 'style', !this._values.length && 'default' || 'full');
-    }
-
-}, {
+    },
 
     getSelectedItemHtml: function(employee, options) {
 
@@ -149,4 +147,8 @@ BEM.DOM.decl({
             '</li>';
 
     }
+
+}, {
+
+
 });
