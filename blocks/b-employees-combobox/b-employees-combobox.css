@@ -300,12 +300,13 @@
 .b-employees-combobox__cancel-selected,
 .b-employees-combobox__dep-cancel-selected
 {
-    display: inline-block;
-    vertical-align: middle;
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    margin-top: -4px;
     width: 9px;
     height: 9px;
     cursor: pointer;
-    margin-left: 2%;
     background: url('../../images/ic-round-cross-small-grey.png');
 }
 

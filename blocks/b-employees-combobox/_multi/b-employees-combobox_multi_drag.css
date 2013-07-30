@@ -53,30 +53,32 @@
 {
     width: 90%;
     margin: 0;
-    padding: 0 0 0 16px;
+    padding: 0 0 0 14px;
     border: none;
     background: none;
-    height: 20px;
+    height: 18px;
 }
 
 .b-employees-combobox_multi_drag .b-employees-combobox__item-input_style_full .b-employees-combobox__input-plus
 {
-    width: 12px;
-    height: 12px;
+    width: 9px;
+    height: 9px;
     background: url(../../../images/ic-plus.png) 0 0 no-repeat;
     position: absolute;
-    top: 8px;
+    top: 50%;
     left: 3px;
+    margin-top: -4px;
 }
 
 .b-employees-combobox_multi_drag .b-employees-combobox__item-input_selected_yes .b-employees-combobox__input-plus
 {
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     background: url(../../../images/ic-search-gray.png) 0 0 no-repeat !important;
     position: absolute;
-    top: 26%;
-    left: 2%;
+    top: 50%;
+    left: 2px;
+    margin-top: -6px;
 }
 
 .b-employees-combobox__selected-item-position
@@ -84,7 +86,8 @@
     position: absolute;
     width: 20px;
     left: 0;
-    top: 7px;
+    top: 50%;
+    margin-top: -0.8em;
     font-size: 0.8em;
     font-weight: bold;
     text-align: center;
@@ -94,7 +97,8 @@
 {
     position: absolute;
     left: 0;
-    top: 16px;
+    top: 125%;
+    margin-top: -1.1em;
     z-index: 11;
     width: 20px;
     text-align: center;

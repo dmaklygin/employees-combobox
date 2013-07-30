@@ -14,8 +14,9 @@
     display: inline-block;
     border: none;
     padding: 1.5% 1%;
-    margin: 1% 1% 0 1%;
+    margin: 1% 1% 1% 1%;
     vertical-align: top;
+    position: relative;
 }
 
 .b-employees-combobox_multi_list .b-employees-combobox__selected-item-name
@@ -40,7 +41,7 @@
     overflow: hidden;
     vertical-align: top;
     padding: 1.5% 1%;
-    margin: 1% 1% 0 1%;
+    margin: 1% 1% 1% 1%;
 }
 
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_full
@@ -60,7 +61,7 @@
     margin: 0;
     border: none;
     background: none;
-    height: 21px;
+    height: 18px;
     padding: 0 0 0 14px;
 }
 
@@ -69,18 +70,20 @@
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_full .b-employees-combobox__input-plus,
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_small .b-employees-combobox__input-plus
 {
-    top: 9px;
-    left: 3px;
-    width: 10px;
-    height: 10px;
-    background: url(../../../images/ic-plus.png) 0 0 no-repeat;
     position: absolute;
+    top: 50%;
+    left: 3px;
+    margin-top: -4px;
+    width: 9px;
+    height: 9px;
+    background: url(../../../images/ic-plus.png) 0 0 no-repeat;
 }
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_selected_yes.b-employees-combobox__item-input_style_full .b-employees-combobox__input-plus,
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_selected_yes.b-employees-combobox__item-input_style_small .b-employees-combobox__input-plus
 {
-    top: 7px;
+    top: 50%;
     left: 2px;
+    margin-top: -6px;
     width: 12px;
     height: 12px;
 }
