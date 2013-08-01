@@ -63,6 +63,12 @@
 
         this.containerHeight = this.element.height();
 
+        if (!this.containerHeight) {
+            this.containerHeight = $('.b-employees-combobox__suggest')
+                .css('max-height').replace('px', '');
+            this.containerHeight || (this.containerHeight = 300);
+        }
+
         this.content.css('height', this.containerHeight + 'px');
 
         this.barContainer.css('height', this.containerHeight + 'px');

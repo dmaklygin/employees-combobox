@@ -226,12 +226,16 @@ BEM.DOM.decl('b-employees-combobox', {
 
         var _this = this,
             position = this.elem('item-input').offset(),
+            parentPosition = this.elem('item-input').parent().offset(),
             height = this.elem('item-input').outerHeight(true);
 
         this.setMod(this.elem('item-input'), 'selected', 'yes');
 
         this._dropdown
-            .css({ top: (position.top + height) + 'px' })
+            .css({
+                top: (position.top + height) + 'px',
+                left: parentPosition.left
+            })
             .fadeIn(200, function () {
 
                 _this.__scroller && _this._suggest.scrollbar();

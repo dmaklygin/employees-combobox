@@ -60,6 +60,7 @@
     top: 130%;
     left: 0;
     border: 2px solid #e5e5e5;
+    z-index: 99999;
 }
 
 .b-employees-combobox__suggest-wrap
@@ -85,7 +86,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     /*width: 240px;*/
-    height: 300px;
+    max-height: 300px;
     margin: 10px 0 14px 14px;
 }
 
