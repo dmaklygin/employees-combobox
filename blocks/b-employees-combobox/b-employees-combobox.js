@@ -176,10 +176,11 @@ BEM.DOM.decl('b-employees-combobox', {
             var depDom = $(e.currentTarget).parent(),
                 hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
 
-            if (_this._isMulti) {
-                _this.selectDepartment(_this.getMod(depDom, 'id'));
-                return;
-            }
+//            @todo Закомментировал до лучших времен
+//            if (_this._isMulti) {
+//                _this.selectDepartment(_this.getMod(depDom, 'id'));
+//                return;
+//            }
 
             _this.toggleMod(depDom, 'expand', 'on', 'off');
 
@@ -538,12 +539,12 @@ BEM.DOM.decl('b-employees-combobox', {
                         matchFlag && matchedEmployees.push(emp);
                     });
 
-                    cntEmployees += matchedEmployees.length;
+                    cntEmployees += (matchedEmployees.length || 0);
 
                     childDepartments = dep.departments.length && getMatchedDepartments(dep.departments);
 
                     $.each(childDepartments, function(ncd, childDep) {
-                        cntEmployees += childDep.cntEmployees;
+                        cntEmployees += (childDep.cntEmployees || 0);
                     });
 
                     matchedEmployees.length && matchedDepartments.push({
@@ -565,7 +566,7 @@ BEM.DOM.decl('b-employees-combobox', {
             matchedDepartments = getMatchedDepartments(company.departments);
 
             $.each(matchedDepartments, function(md, dep) {
-                cntEmployees += dep.cntEmployees;
+                cntEmployees += (dep.cntEmployees || 0);
             });
 
             res.push({
@@ -867,17 +868,11 @@ BEM.DOM.decl('b-employees-combobox', {
             '<span class="' + cls + '-name" title="' + department.name + '">' + department.name + '</span>' +
             '<div class="b-employees-combobox__dep-cancel-selected"></div>' +
             '</li>';
-
     }
-
 },
 {
    live: function() { console.log(this._name);
        this
-//           .liveBindTo('employee', 'mousedown', function(e) {
-//               console.log('employee mousedown');
-//               this.selectEmployee(this.getMod(e.data.domElem, 'id'));
-//           })
            .liveBindTo('cancel-selected', 'mousedown', function(e) {
                this.cancelEmployeeSelected(this.getMod(e.data.domElem.parent(), 'id'));
            })
@@ -886,14 +881,5 @@ BEM.DOM.decl('b-employees-combobox', {
            });
 
        return false;
-   },
-
-    // TODO use templates
-
-
-    // TODO use templates
-
-
-    // TODO use templates
-
+   }
 });
