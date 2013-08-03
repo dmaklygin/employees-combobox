@@ -9,7 +9,8 @@ BEM.DOM.decl('b-employees-combobox', {
             this.params = $.extend({
                 defaultPlaceholder: 'Initiator',
                 activePlaceholder: 'Search',
-                valueName: 'combobox'
+                valueName: 'combobox',
+                noFound: 'Поиск по фразе %s не дал результатов'
             }, this.params);
 
             this._data = this.params.data;
@@ -758,10 +759,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
         if (!company || !company.departments.length) {
             return '<div class="b-employees-combobox__not-found">' +
-                'По запросу ' +
-                '<span  class="b-employees-combobox__search-string">&laquo;' +
-                options.name + '&raquo;</span>' +
-                ' поиск не дал результатов' +
+                this.params.noFound.replace('%s', options.name) +
                 '</div>';
         }
 

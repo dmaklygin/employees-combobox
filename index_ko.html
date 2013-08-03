@@ -7,7 +7,15 @@
     <!--<link rel="stylesheet" href="blocks/i-jquery/__custom-scrollbar/i-jquery__custom-scrollbar.css" />-->
     <link rel="stylesheet" href="blocks/i-jquery/__scrollbar/i-jquery__scrollbar.css" />
     <link rel="stylesheet" href="blocks/i-jquery/__scrollbar/_hide/i-jquery__scrollbar_hide_yes.css" />
-    <script type="text/javascript">data = {}</script>
+    <script type="text/javascript">
+        var data = {},
+            comboboxLang = {
+                defaultPlaceholder: 'Инициатор',
+                activePlaceholder: 'Начните вводить имя',
+                smallPlaceholder: 'Добавить',
+                noFound: 'По запросу <span class="b-employees-combobox__search-string">«%s»</span> поиск не дал результатов'
+            };
+    </script>
     <script src="mulitnested-company-data.js" type="text/javascript"></script>
     <style>
         * {
@@ -90,6 +98,10 @@
                 bemCombo;
 
             employeesData.value = ko.utils.unwrapObservable(value);
+
+            for (var i in comboboxLang) {
+                employeesData[i] = comboboxLang[i];
+            }
 
             $(element).attr('onclick', "return { 'b-employees-combobox': " + JSON.stringify(employeesData) + " }");
 
