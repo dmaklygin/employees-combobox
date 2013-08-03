@@ -48,6 +48,14 @@ BEM.DOM.decl({
                 (this._values.length % 2 == 0) && 'full' ||
                 'small'
         );
+    },
+
+    beforeSelectedItemHtml: function() {
+        return '<div>';
+    },
+
+    afterSelectedItemHtml: function() {
+        return '</div>';
     }
 
 }, {});

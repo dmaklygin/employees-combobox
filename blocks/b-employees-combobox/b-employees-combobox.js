@@ -816,14 +816,13 @@ BEM.DOM.decl('b-employees-combobox', {
                                     .join('');
                             }
 
-                            depHtml +=
-                                '<li class="' + empCls + ' ' + (level === 0 && ne === 0 && nd === 0 ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + '">' +
-                                    '<img src="' + emp.avatarUrl + '" height="32px" width="32px" />' +
-                                    '<div class="b-employees-combobox__employee-info">' +
-                                    '<div class="b-employees-combobox__employee-name">' + name + '</div>' +
-                                    '<div class="b-employees-combobox__employee-pos" title="' + emp.position + '">' + emp.position + '</div>' +
-                                    '</div>' +
-                                    '</li>';
+                            depHtml += '<li class="' + empCls + ' ' + (level === 0 && ne === 0 && nd === 0 ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + '">';
+                            depHtml += '<img src="' + emp.avatarUrl + '" height="32px" width="32px" />' +
+                                            '<div class="b-employees-combobox__employee-info">' +
+                                            '<div class="b-employees-combobox__employee-name">' + name + '</div>' +
+                                            '<div class="b-employees-combobox__employee-pos" title="' + emp.position + '">' + emp.position + '</div>' +
+                                            '</div>';
+                            depHtml += '</li>';
                         });
                         depHtml += '</ul>';
                     }
@@ -861,10 +860,12 @@ BEM.DOM.decl('b-employees-combobox', {
         }
 
         return '<li class="b-employees-combobox__selected-item' + ' b-employees-combobox__selected-item_id_' + employee.id + '">' +
-            '<img src="' + employee.avatarUrl + '" height="18px" width="18px" />' +
-            '<span class="b-employees-combobox__selected-item-name" title="' + employee.fullName + '">' + name + '</span>' +
-            '<div class="b-employees-combobox__cancel-selected"></div>' +
-            '</li>';
+                (this.beforeSelectedItemHtml ? this.beforeSelectedItemHtml() : '') +
+                '<img src="' + employee.avatarUrl + '" height="18px" width="18px" />' +
+                '<span class="b-employees-combobox__selected-item-name" title="' + employee.fullName + '">' + name + '</span>' +
+                '<div class="b-employees-combobox__cancel-selected"></div>' +
+                (this.afterSelectedItemHtml ? this.afterSelectedItemHtml() : '') +
+                '</li>';
     },
 
     getSelectedDepartmentItemHtml: function(department, options) {
