@@ -57,6 +57,12 @@
     margin: 2px 0;
 }
 
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_style_default
+{
+    margin: 0;
+    padding: 0;
+}
+
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_small
 {
     width: 50%;
@@ -85,6 +91,7 @@
     height: 9px;
     background: url(../../../images/ic-plus.png) 0 0 no-repeat;
 }
+
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_selected_yes.b-employees-combobox__item-input_style_full .b-employees-combobox__input-plus,
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_selected_yes.b-employees-combobox__item-input_style_small .b-employees-combobox__input-plus
 {
@@ -93,6 +100,11 @@
     margin-top: -6px;
     width: 12px;
     height: 12px;
+}
+
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_selected_yes.b-employees-combobox__item-input_style_default .b-employees-combobox__input-plus
+{
+    left: 2px;
 }
 
 .b-employees-combobox__item-input_selected_no.b-employees-combobox__item-input_style_full.b-employees-combobox__item-input_hover_no,
