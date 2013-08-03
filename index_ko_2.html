@@ -108,28 +108,26 @@
                 bemCombo;
 
             employeesData.value = ko.utils.unwrapObservable(value);
-            console.log(employeesData.value);
+
             $(element).attr('onclick', "return { 'b-employees-combobox': " + JSON.stringify(employeesData) + " }");
 
             bemCombo = $(element).bem('b-employees-combobox');
 
             bemCombo.on('change', function() {
-                console.log('change 111', bemCombo.getValue(), ko.utils.unwrapObservable(value), ko.utils.unwrapObservable(valueAccessor()));
                 value(bemCombo.getValue());
             });
         },
         update: function(element, valueAccessor, allBindingsAccessor) {
             var bemCombo = $(element).bem('b-employees-combobox');
             if (ko.utils.unwrapObservable(valueAccessor()) != bemCombo.getValue()) {
-                console.log('update KO', element, ko.utils.unwrapObservable(valueAccessor()), bemCombo.getValue());
                 bemCombo.setValue(ko.utils.unwrapObservable(valueAccessor()));
             }
         }
     };
 
     ko.applyBindings({
-        employeesValue1: ko.observable('479e'),
-        employeesValue2: ko.observable('480e')
+        employeesValue1: ko.observable('777e'),
+        employeesValue2: ko.observable('14e')
     });
 
 </script>

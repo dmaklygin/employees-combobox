@@ -81,15 +81,16 @@ BEM.DOM.decl('b-employees-combobox', {
 
         var _this = this;
 
-        (this.params.value || '').split(',').filter(function(val) { return !!val; }).forEach(function(value) {
-            if (-1 !== value.indexOf('d')) {
-                _this.selectDepartment(value.replace('d', ''));
-            } else if (-1 !== value.indexOf('e')) {
-                _this.selectEmployee(value.replace('e', ''));
-            }
-        });
-
         this.elem('value').attr('name', this.params.valueName);
+
+        (this.params.value || '').split(',').filter(function(val) { return !!val; })
+            .forEach(function(value) {
+                if (-1 !== value.indexOf('d')) {
+                    _this.selectDepartment(value.replace('d', ''));
+                } else if (-1 !== value.indexOf('e')) {
+                    _this.selectEmployee(value.replace('e', ''));
+                }
+            });
 
         _this._updateInputStyle();
     },
@@ -519,17 +520,22 @@ BEM.DOM.decl('b-employees-combobox', {
                         return matchedDepartments;
                     }
                     $.each(dep.employees, function(ne, emp) {
+
                         if (_this._values.indexOf(emp.id + 'e') !== -1) {
                             return;
                         }
+
                         var name = emp.fullName.toLowerCase(),
                             words = name.split(' '),
                             matchFlag = false;
 
                         if (val) {
+
+
                             words.push(name);
+
                             words.forEach(function(w) {
-                                w.indexOf(val) || (matchFlag = true)
+                                (-1 !== w.indexOf(val)) && (matchFlag = true)
                             });
 
                         } else {
@@ -542,12 +548,11 @@ BEM.DOM.decl('b-employees-combobox', {
                     cntEmployees += (matchedEmployees.length || 0);
 
                     childDepartments = dep.departments.length && getMatchedDepartments(dep.departments);
-
                     $.each(childDepartments, function(ncd, childDep) {
                         cntEmployees += (childDep.cntEmployees || 0);
                     });
 
-                    matchedEmployees.length && matchedDepartments.push({
+                    (matchedEmployees.length || childDepartments.length) && matchedDepartments.push({
                         name: dep.name,
                         id: dep.id,
                         departments: childDepartments,
@@ -555,7 +560,6 @@ BEM.DOM.decl('b-employees-combobox', {
                         cntEmployees: cntEmployees
                     });
                 });
-
                 return matchedDepartments;
             };
 
@@ -564,7 +568,6 @@ BEM.DOM.decl('b-employees-combobox', {
                 cntEmployees = 0;
 
             matchedDepartments = getMatchedDepartments(company.departments);
-
             $.each(matchedDepartments, function(md, dep) {
                 cntEmployees += (dep.cntEmployees || 0);
             });
@@ -581,19 +584,6 @@ BEM.DOM.decl('b-employees-combobox', {
 
         return res;
     },
-
-//    inputVal: function(val) {
-//
-//        if (typeof val == 'undefined') return this._val;
-//
-//        if (this._val != val) {
-//            this._input.val() != val && this._input.val(val);
-//            this._val = val;
-//            this.trigger('change');
-//        }
-//
-//        return this;
-//    },
 
     _renderValues: function() {
         console.log();
@@ -890,9 +880,7 @@ BEM.DOM.decl('b-employees-combobox', {
    live: function() {
        this
            .liveBindTo('cancel-selected', 'click', function(e) {
-               console.log('cancel selected start');
                this.cancelEmployeeSelected(this.getMod(e.data.domElem.parent(), 'id'));
-               console.log('cancel-selected end');
            })
            .liveBindTo('dep-cancel-selected', 'mousedown', function(e) {
                this.cancelDepartmentSelected(this.getMod(e.data.domElem.parent(), 'id-dep'));
