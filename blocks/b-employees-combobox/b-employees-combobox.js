@@ -19,7 +19,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
             this._companies = this.elem('companies');
 
-            this._initDropdown();
+            this._dropdown = this.elem('dropdown');
 
             this._initData();
 
@@ -41,7 +41,9 @@ BEM.DOM.decl('b-employees-combobox', {
 
             this._initEvents();
 
-            setInterval(function() { _this.inputVal(_this._input.val()) }, 200);
+            this._initDropdown();
+
+//            setInterval(function() { _this.inputVal(_this._input.val()) }, 200);
 
             this._refreshSuggest();
         }
@@ -64,8 +66,6 @@ BEM.DOM.decl('b-employees-combobox', {
             position = wrapper.offset(),
             width = wrapper.outerWidth(true),
             height = wrapper.outerHeight(true);
-
-        this._dropdown = this.elem('dropdown');
 
         $(document.body).append(this._dropdown);
 
@@ -130,7 +130,7 @@ BEM.DOM.decl('b-employees-combobox', {
         });
 
         this
-            .bindTo(this._input, 'focusin', function() {
+            .bindTo(this._input, 'focus', function() {
                 this.setMod(this.elem('input'), 'status', 'active');
                 this._showSuggest(true);
             })
@@ -138,11 +138,6 @@ BEM.DOM.decl('b-employees-combobox', {
                 this.setMod(this.elem('input'), 'status', 'inactive');
                 this.afterCurrentEvent(function() { _this._hideSuggest() });
             })
-
-            .bindTo(this._dropdown, 'mousedown', function() {
-                this._preventHide = true;
-            })
-
             .bindTo(this._input, 'keypress', function(e) {
                 if (e.keyCode == 13) {
                     _this.selectEmployee(_this.getMod(_this.findElem(_this._dropdown, 'employee', 'select', 'yes'), 'id'));
@@ -166,49 +161,57 @@ BEM.DOM.decl('b-employees-combobox', {
                 }
             });
 
+        this.bindTo(this._dropdown, 'mousedown', function(event) {
 
-        $('.b-employees-combobox__employee').live('mousedown', function(e) {
-            _this.selectEmployee(_this.getMod($(e.currentTarget), 'id'));
-        });
+            var target = $(event.target),
+                company = target.parents(_this.buildSelector('company')),
+                employee = target.parents(_this.buildSelector('employee'));
 
-        $('.b-employees-combobox__department-name').live('mousedown', function(e) {
+            if (company.size()) {
+                _this._currentCompanyId = _this.getMod(company, 'id');
+                _this._refreshSuggest();
+                _this._preventHide = true;
+            } else if (employee.size()) {
+                _this.selectEmployee(_this.getMod(employee, 'id'));
+                _this._isMulti && (_this._preventHide = true);
+            } else if (target.has(_this.buildSelector('department-name'))) {
+                var depDom = target.parent(),
+                    hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
 
-            var depDom = $(e.currentTarget).parent(),
-                hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
+                //            @todo Закомментировал до лучших времен
+                //            if (_this._isMulti) {
+                //                _this.selectDepartment(_this.getMod(depDom, 'id'));
+                //                return;
+                //            }
 
-//            @todo Закомментировал до лучших времен
-//            if (_this._isMulti) {
-//                _this.selectDepartment(_this.getMod(depDom, 'id'));
-//                return;
-//            }
+                _this.toggleMod(depDom, 'expand', 'on', 'off');
 
-            _this.toggleMod(depDom, 'expand', 'on', 'off');
+                var empList = $('.b-employees-combobox__employees-list:first', depDom);
 
-            var empList = $('.b-employees-combobox__employees-list:first', depDom);
-            empList.slideToggle(200, function() {
-                var childDepartments = $('.b-employees-combobox__department', depDom);
+                empList.slideToggle(200, function() {
+                    var childDepartments = $('.b-employees-combobox__department', depDom);
 
-                if (empList.filter(":hidden").size()) {
-                    childDepartments.hide();
-                    this.setMod(childDepartments, 'expand', 'off');
-                } else {
-                    childDepartments.show();
-                    this.setMod(childDepartments, 'expand', 'on');
-                }
+                    if (empList.filter(":hidden").size()) {
+                        childDepartments.hide();
+                        this.setMod(childDepartments, 'expand', 'off');
+                    } else {
+                        childDepartments.show();
+                        this.setMod(childDepartments, 'expand', 'on');
+                    }
 
-                // update scroller
-                this.__scroller.scrollbar();
+                    // update scroller
+                    this.__scroller.scrollbar();
 
-                hasSelected && this._scrollToCurrent();
+                    hasSelected && this._scrollToCurrent();
 
-            }.bind(_this));
+                }.bind(_this));
 
-            hasSelected && _this._moveCursor('down');
-        });
+                hasSelected && _this._moveCursor('down');
 
-        $('.b-employees-combobox__company').live('mousedown', function(e) {
-            _this._currentCompanyId = _this.getMod($(e.currentTarget), 'id');
-            _this._refreshSuggest();
+                _this._preventHide = true;
+            } else {
+                _this._preventHide = true;
+            }
         });
     },
 
@@ -249,15 +252,9 @@ BEM.DOM.decl('b-employees-combobox', {
             this._preventHide = false;
             this.elem('input').focus();
         } else {
-
             this.setMod(this.elem('item-input'), 'selected', 'no');
-
             this._dropdown.fadeOut(200);
         }
-    },
-
-    _renderValues: function() {
-        this.elem('value').val(this._values.join(','));
     },
 
     selectDepartment: function(id, silent) {
@@ -391,8 +388,6 @@ BEM.DOM.decl('b-employees-combobox', {
             this.elem('item-input').show();
         }
 
-        this._preventHide = true;
-
         this.elem('input').focus();
     },
 
@@ -407,8 +402,6 @@ BEM.DOM.decl('b-employees-combobox', {
         this.findElem('selected-item', 'id-dep', id).remove();
 
         this.elem('item-input').show();
-
-        this._preventHide = true;
 
         this.elem('input').focus();
     },
@@ -586,25 +579,30 @@ BEM.DOM.decl('b-employees-combobox', {
         return res;
     },
 
-    inputVal: function(val) {
+//    inputVal: function(val) {
+//
+//        if (typeof val == 'undefined') return this._val;
+//
+//        if (this._val != val) {
+//            this._input.val() != val && this._input.val(val);
+//            this._val = val;
+//            this.trigger('change');
+//        }
+//
+//        return this;
+//    },
 
-        if (typeof val == 'undefined') return this._val;
-
-        if (this._val != val) {
-            this._input.val() != val && this._input.val(val);
-            this._val = val;
-            this.trigger('change');
-        }
-
-        return this;
+    _renderValues: function() {
+        console.log();
+        this.elem('value').val(this._values.join(','));
     },
 
     getValue: function() {
-        return this.elem('value').val();
+        return this._values.join(',');
     },
 
     setValue: function(value) {
-
+        console.log('set values');
         var _this = this,
             values = (value || '').split(',').filter(function(val) { return !!val; }),
             success = true;
@@ -627,7 +625,7 @@ BEM.DOM.decl('b-employees-combobox', {
             this.elem('item-input').show();
         }
 
-        _this._updateInputStyle();
+        this._updateInputStyle();
 
         this.trigger('change');
     },
@@ -732,7 +730,6 @@ BEM.DOM.decl('b-employees-combobox', {
 
         return id + 'e';
     },
-
 
     getCompaniesHtml: function(list, cidCurrent) {
         var htmlBuf = '',
@@ -846,7 +843,6 @@ BEM.DOM.decl('b-employees-combobox', {
         return htmlBuf;
     },
 
-
     getSelectedItemHtml: function(employee, options) {
 
         var name = employee.fullName;
@@ -875,10 +871,12 @@ BEM.DOM.decl('b-employees-combobox', {
     }
 },
 {
-   live: function() { console.log(this._name);
+   live: function() {
        this
-           .liveBindTo('cancel-selected', 'mousedown', function(e) {
+           .liveBindTo('cancel-selected', 'click', function(e) {
+               console.log('cancel selected start');
                this.cancelEmployeeSelected(this.getMod(e.data.domElem.parent(), 'id'));
+               console.log('cancel-selected end');
            })
            .liveBindTo('dep-cancel-selected', 'mousedown', function(e) {
                this.cancelDepartmentSelected(this.getMod(e.data.domElem.parent(), 'id-dep'));

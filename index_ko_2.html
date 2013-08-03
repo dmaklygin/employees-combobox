@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Новый комбобокс для AirPlans</title>
+    <link rel="stylesheet" href="blocks/b-employees-combobox/b-employees-combobox.css" />
+    <!--<link rel="stylesheet" href="blocks/i-jquery/__custom-scrollbar/i-jquery__custom-scrollbar.css" />-->
+    <link rel="stylesheet" href="blocks/i-jquery/__scrollbar/i-jquery__scrollbar.css" />
+    <link rel="stylesheet" href="blocks/i-jquery/__scrollbar/_hide/i-jquery__scrollbar_hide_yes.css" />
+    <script type="text/javascript">data = {}</script>
+    <script src="mulitnested-company-data.js" type="text/javascript"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font: normal 12px 'Segoe UI', Arial;
+        }
+        .b-page { padding: 20px; }
+        .b-header { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+<div class="b-page">
+    <h1 class="b-header">Комбобокс сотрудников</h1>
+
+    <input type="text" value="" data-bind="value: employeesValue1" />
+
+    <div style="width: 178px; height: 100px; border: 1px solid black; padding: 10px; overflow: hidden;">
+        <div class="i-bem b-employees-combobox"
+             data-bind="employeesCombobox: employeesValue1, employeesData: { data: data, defaultPlaceholder: 'Инициатор', activePlaceholder: 'Начните вводить имя' }"
+             >
+            <ul class="b-employees-combobox__selected-items">
+                <li class="b-employees-combobox__item-input">
+                    <input class="b-employees-combobox__input" type="text" />
+                    <div class="b-employees-combobox__input-plus"></div>
+                </li>
+            </ul>
+            <input class="b-employees-combobox__value" type="hidden" />
+            <table cellspacing="0" rowspasing="0" class="b-employees-combobox__dropdown">
+                <tr>
+                    <td class="b-employees-combobox__companies-wrap">
+                        <ul class="b-employees-combobox__companies"></ul>
+                    </td>
+                    <td class="b-employees-combobox__suggest-wrap">
+                        <div class="b-employees-combobox__suggest"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <input type="text" value="" data-bind="value: employeesValue2" />
+
+    <div style="width: 178px; height: 100px; border: 1px solid red; padding: 10px; overflow: hidden;">
+        <div class="i-bem b-employees-combobox"
+             data-bind="employeesCombobox: employeesValue2, employeesData: { data: data, defaultPlaceholder: 'Инициатор', activePlaceholder: 'Начните вводить имя' }"
+                >
+            <ul class="b-employees-combobox__selected-items">
+                <li class="b-employees-combobox__item-input">
+                    <input class="b-employees-combobox__input" type="text" />
+                    <div class="b-employees-combobox__input-plus"></div>
+                </li>
+            </ul>
+            <input class="b-employees-combobox__value" type="hidden" />
+            <table cellspacing="0" rowspasing="0" class="b-employees-combobox__dropdown">
+                <tr>
+                    <td class="b-employees-combobox__companies-wrap">
+                        <ul class="b-employees-combobox__companies"></ul>
+                    </td>
+                    <td class="b-employees-combobox__suggest-wrap">
+                        <div class="b-employees-combobox__suggest"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="blocks/i-jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+<script src="blocks/i-jquery/__inherit/i-jquery__inherit.js" type="text/javascript"></script>
+<script src="blocks/i-jquery/__identify/i-jquery__identify.js" type="text/javascript"></script>
+<script src="blocks/i-jquery/__is-empty-object/i-jquery__is-empty-object.js" type="text/javascript"></script>
+<script src="blocks/i-jquery/__debounce/i-jquery__debounce.js" type="text/javascript"></script>
+<script src="blocks/i-jquery/__observable/i-jquery__observable.js" type="text/javascript"></script>
+<script src="blocks/i-jquery/__mousewheel/i-jquery__mousewheel.js" type="text/javascript"></script>
+<!--<script src="blocks/i-jquery/__custom-scrollbar/i-jquery__custom-scrollbar.js" type="text/javascript"></script>-->
+<script src="blocks/i-jquery/__scrollbar/i-jquery__scrollbar.js" type="text/javascript"></script>
+<script type='text/javascript' src='blocks/i-ko/knockout-2.3.0.js'></script>
+
+<script src="blocks/i-ecma/__object/i-ecma__object.js" type="text/javascript"></script>
+<script src="blocks/i-ecma/__array/i-ecma__array.js" type="text/javascript"></script>
+<script src="blocks/i-ecma/__function/i-ecma__function.js" type="text/javascript"></script>
+<script src="blocks/i-bem/i-bem.js" type="text/javascript"></script>
+<script src="blocks/i-bem/__internal/i-bem__internal.js" type="text/javascript"></script>
+<script src="blocks/i-bem/__dom/i-bem__dom.js" type="text/javascript"></script>
+<script src="blocks/b-employees-combobox/b-employees-combobox.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() { BEM.DOM.init() });
+</script>
+<script type="text/javascript">
+    ko.bindingHandlers.employeesCombobox = {
+        init: function(element, valueAccessor, allBindingsAccessor) {
+
+            var value = valueAccessor(),
+                employeesData = allBindingsAccessor().employeesData,
+                bemCombo;
+
+            employeesData.value = ko.utils.unwrapObservable(value);
+            console.log(employeesData.value);
+            $(element).attr('onclick', "return { 'b-employees-combobox': " + JSON.stringify(employeesData) + " }");
+
+            bemCombo = $(element).bem('b-employees-combobox');
+
+            bemCombo.on('change', function() {
+                console.log('change 111', bemCombo.getValue(), ko.utils.unwrapObservable(value), ko.utils.unwrapObservable(valueAccessor()));
+                value(bemCombo.getValue());
+            });
+        },
+        update: function(element, valueAccessor, allBindingsAccessor) {
+            var bemCombo = $(element).bem('b-employees-combobox');
+            if (ko.utils.unwrapObservable(valueAccessor()) != bemCombo.getValue()) {
+                console.log('update KO', element, ko.utils.unwrapObservable(valueAccessor()), bemCombo.getValue());
+                bemCombo.setValue(ko.utils.unwrapObservable(valueAccessor()));
+            }
+        }
+    };
+
+    ko.applyBindings({
+        employeesValue1: ko.observable('479e'),
+        employeesValue2: ko.observable('480e')
+    });
+
+</script>
+
+
+</body>
+</html>
+
