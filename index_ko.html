@@ -101,7 +101,9 @@
         },
         update: function(element, valueAccessor, allBindingsAccessor) {
             var bemCombo = $(element).bem('b-employees-combobox');
-            bemCombo.setValue(ko.utils.unwrapObservable(valueAccessor()));
+            if (ko.utils.unwrapObservable(valueAccessor()) != bemCombo.getValue()) {
+                bemCombo.setValue(ko.utils.unwrapObservable(valueAccessor()));
+            }
         }
     };
 

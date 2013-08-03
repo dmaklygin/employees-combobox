@@ -881,10 +881,10 @@ BEM.DOM.decl('b-employees-combobox', {
    live: function() {
        this
            .liveBindTo('cancel-selected', 'click', function(e) {
-               this.cancelEmployeeSelected(this.getMod(e.data.domElem.parent(), 'id'));
+               this.cancelEmployeeSelected(this.getMod($(e.target).parents(this.buildSelector('selected-item')), 'id'));
            })
            .liveBindTo('dep-cancel-selected', 'mousedown', function(e) {
-               this.cancelDepartmentSelected(this.getMod(e.data.domElem.parent(), 'id-dep'));
+               this.cancelDepartmentSelected(this.getMod($(e.target).parents(this.buildSelector('selected-item')), 'id-dep'));
            });
 
        return false;
