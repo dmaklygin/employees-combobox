@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="blocks/i-jquery/__scrollbar/i-jquery__scrollbar.css" />
     <link rel="stylesheet" href="blocks/i-jquery/__scrollbar/_hide/i-jquery__scrollbar_hide_yes.css" />
     <script type="text/javascript">data = {}</script>
-    <script src="mulitnested-company-data.js" type="text/javascript"></script>
+    <script src="data2.js" type="text/javascript"></script>
     <style>
         * {
             padding: 0;
@@ -28,7 +28,7 @@
 
     <div style="width: 178px; height: 100px; border: 1px solid black; padding: 10px; overflow: hidden;">
         <div class="i-bem b-employees-combobox"
-             data-bind="employeesCombobox: employeesValue1, employeesData: { data: data, defaultPlaceholder: 'Инициатор', activePlaceholder: 'Начните вводить имя' }"
+             data-bind="employeesCombobox: employeesValue1, employeesData: { data: data, defaultPlaceholder: 'Инициатор', activePlaceholder: 'Начните вводить имя', valueName: 'something' }"
              >
             <ul class="b-employees-combobox__selected-items">
                 <li class="b-employees-combobox__item-input">
@@ -54,7 +54,7 @@
 
     <div style="width: 178px; height: 100px; border: 1px solid red; padding: 10px; overflow: hidden;">
         <div class="i-bem b-employees-combobox"
-             data-bind="employeesCombobox: employeesValue2, employeesData: { data: data, defaultPlaceholder: 'Инициатор', activePlaceholder: 'Начните вводить имя' }"
+             data-bind="employeesCombobox: employeesValue2, employeesData: { data: data, defaultPlaceholder: 'Инициатор', activePlaceholder: 'Начните вводить имя', valueName: 'something2342' }"
                 >
             <ul class="b-employees-combobox__selected-items">
                 <li class="b-employees-combobox__item-input">

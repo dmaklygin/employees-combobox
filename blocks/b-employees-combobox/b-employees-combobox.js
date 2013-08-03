@@ -8,7 +8,8 @@ BEM.DOM.decl('b-employees-combobox', {
 
             this.params = $.extend({
                 defaultPlaceholder: 'Initiator',
-                activePlaceholder: 'Search'
+                activePlaceholder: 'Search',
+                valueName: 'combobox'
             }, this.params);
 
             this._data = this.params.data;
@@ -43,7 +44,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
             this._initDropdown();
 
-//            setInterval(function() { _this.inputVal(_this._input.val()) }, 200);
+            setInterval(function() { _this.inputVal(_this._input.val()) }, 200);
 
             this._refreshSuggest();
         }
@@ -87,6 +88,8 @@ BEM.DOM.decl('b-employees-combobox', {
                 _this.selectEmployee(value.replace('e', ''));
             }
         });
+
+        this.elem('value').attr('name', this.params.valueName);
 
         _this._updateInputStyle();
     },
@@ -595,6 +598,19 @@ BEM.DOM.decl('b-employees-combobox', {
     _renderValues: function() {
         console.log();
         this.elem('value').val(this._values.join(','));
+    },
+
+    inputVal: function(val) {
+
+        if (typeof val == 'undefined') return this._val;
+
+        if (this._val != val) {
+            this._input.val() != val && this._input.val(val);
+            this._val = val;
+            this.trigger('change');
+        }
+
+        return this;
     },
 
     getValue: function() {
