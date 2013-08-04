@@ -66,7 +66,7 @@
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_small
 {
     width: 50%;
-    display: inline-block;
+    display: inline-block !important;
 }
 
 .b-employees-combobox_multi_list .b-employees-combobox__item-input_style_full .b-employees-combobox__input,
