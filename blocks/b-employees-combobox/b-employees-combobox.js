@@ -182,7 +182,7 @@ BEM.DOM.decl('b-employees-combobox', {
             } else if (employee.size()) {
                 _this.selectEmployee(_this.getMod(employee, 'id'));
                 _this._isMulti && (_this._preventHide = true);
-            } else if (target.has(_this.buildSelector('department-name'))) {
+            } else if (target.has(_this.buildSelector('department-name')).size()) {
                 var depDom = target.parent(),
                     hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
 
