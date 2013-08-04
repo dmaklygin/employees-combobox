@@ -182,8 +182,8 @@ BEM.DOM.decl('b-employees-combobox', {
             } else if (employee.size()) {
                 _this.selectEmployee(_this.getMod(employee, 'id'));
                 _this._isMulti && (_this._preventHide = true);
-            } else if (target.hasClass('b-employees-combobox__department') || target.hasClass('b-employees-combobox__department-name')) {
-                var depDom = target.hasClass('b-employees-combobox__department') ? target : target.parent(),
+            } else if (target.hasClass('b-employees-combobox__department-name')) {
+                var depDom = target.parent(),
                     hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
 
                 //            @todo Закомментировал до лучших времен
