@@ -76,6 +76,9 @@ BEM.DOM.decl('b-employees-combobox', {
             left: position.left,
             width: width
         });
+
+
+
     },
 
     _initValues: function() {
@@ -234,7 +237,9 @@ BEM.DOM.decl('b-employees-combobox', {
 
         var _this = this,
             position = this.elem('item-input').offset(),
-            parentPosition = this.elem('item-input').parent().offset(),
+            wrapper = this.elem('item-input').parent(),
+            parentPosition = wrapper.offset(),
+            width = wrapper.outerWidth(true),
             height = this.elem('item-input').outerHeight(true);
 
         this.setMod(this.elem('item-input'), 'selected', 'yes');
@@ -242,7 +247,8 @@ BEM.DOM.decl('b-employees-combobox', {
         this._dropdown
             .css({
                 top: (position.top + height) + 'px',
-                left: parentPosition.left
+                left: parentPosition.left,
+                width: width + 'px'
             })
             .fadeIn(200, function () {
 
