@@ -872,6 +872,14 @@ BEM.DOM.decl('b-employees-combobox', {
                 '</li>';
     },
 
+    beforeSelectedItemHtml: function() {
+        return '';
+    },
+
+    afterSelectedItemHtml: function() {
+        return '';
+    },
+
     getSelectedDepartmentItemHtml: function(department, options) {
         var cls = 'b-employees-combobox__selected-item';
 
