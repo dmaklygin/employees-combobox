@@ -183,7 +183,7 @@ BEM.DOM.decl('b-employees-combobox', {
                 _this.selectEmployee(_this.getMod(employee, 'id'));
                 _this._isMulti && (_this._preventHide = true);
             } else if (target.has(_this.buildSelector('department-name')).size()) {
-                var depDom = target.parent(),
+                var depDom = this.getMod(target, 'id') ? target : target.parent(),
                     hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
 
                 //            @todo Закомментировал до лучших времен
