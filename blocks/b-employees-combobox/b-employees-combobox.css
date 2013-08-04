@@ -41,7 +41,7 @@
     background: url(../../images/ic-search-gray.png) 0 0 no-repeat !important;
     position: absolute;
     top: 26%;
-    left: 2%;
+    left: 2px;
 }
 
 .b-employees-combobox__input:focus
