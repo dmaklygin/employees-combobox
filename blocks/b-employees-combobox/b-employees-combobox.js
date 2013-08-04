@@ -519,10 +519,10 @@ BEM.DOM.decl('b-employees-combobox', {
             val = _this._val && _this._val.toLowerCase(),
             getMatchedDepartments = function(departments) {
                 var matchedDepartments = [],
-                    cntEmployees = 0,
                     childDepartments = null;
                 $.each(departments, function(nd, dep) {
-                    var matchedEmployees = [];
+                    var matchedEmployees = [],
+                        cntEmployees = 0;
                     if (_this._values.indexOf(dep.id + 'd') !== -1) {
                         return matchedDepartments;
                     }
