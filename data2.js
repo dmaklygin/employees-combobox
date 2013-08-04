@@ -1,19 +1,5 @@
 var data = [
-    {
-        "name":"TEST",
-        "id":"73",
-        "departments":[
-            {
-                "id": 100,
-                "name": "Some",
-                "employees":[
-                    {"id":1, "name":"ƒÏËÚËÈ", "surname":" ÓÓÒÚÂÎÂ‚", "fullName":"ƒÏËÚËÈ  ÓÓÒÚÂÎÂ‚", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/12.jpg", "position":"«‡Ï. „ÂÌ. ‰ËÂÍÚÓ‡"},
-                    {"id":2, "name":"—ÚÂÎÎ‡", "surname":"¿‡ÍÂÎˇÌ", "fullName":"—ÚÂÎÎ‡ ¿‡ÍÂÎˇÌ", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/ee0fe5c1_fe85_4039_9f0c_19fc6402ef41.jpg", "position":"ﬁËÒÚ"},
-                    {"id":3, "name":"¬‡Òˇ", "surname":"œÛÔÍËÌ", "fullName":"¬‡Òˇ œÛÔÍËÌ", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position":"ËÌÊÂÌÂ"}
-                ]
-            }
-        ]
-    },
+
     {"name":"›ÎËÚ", "id":"74",
         "departments":[
             {

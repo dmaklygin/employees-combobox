@@ -95,7 +95,7 @@ BEM.DOM.decl({
         return true;
     },
 
-    cancelSelected: function(id) {
+    cancelEmployeeSelected: function(id) {
 
         this.__base(id);
 
