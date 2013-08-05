@@ -607,6 +607,10 @@ BEM.DOM.decl('b-employees-combobox', {
             this.trigger('change');
         }
 
+        if (!this.findElem('input').size()) {
+            this._hideSuggest();
+        }
+
         return this;
     },
 
@@ -615,7 +619,6 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     setValue: function(value) {
-        console.log('set values');
         var _this = this,
             values = (value || '').split(',').filter(function(val) { return !!val; }),
             success = true;
