@@ -16,7 +16,7 @@
                 noFound: 'По запросу <span class="b-employees-combobox__search-string">«%s»</span> поиск не дал результатов'
             };
     </script>
-    <script src="mulitnested-company-data.js" type="text/javascript"></script>
+    <script src="data2.js" type="text/javascript"></script>
     <style>
         * {
             padding: 0;
@@ -102,6 +102,17 @@
             for (var i in comboboxLang) {
                 employeesData[i] = comboboxLang[i];
             }
+
+            employeesData.data.forEach(function(company, index) {
+                if (company.employees && company.departments) {
+                    company.departments.splice(0, 0, {
+                        "id": 0,
+                        "name": "",
+                        "employees": company.employees,
+                        "departments": []
+                    });
+                }
+            });
 
             $(element).attr('onclick', "return { 'b-employees-combobox': " + JSON.stringify(employeesData) + " }");
 

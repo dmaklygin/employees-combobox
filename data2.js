@@ -1,6 +1,13 @@
 var data = [
 
-    {"name":"›ÎËÚ", "id":"74",
+    {"name":"АаАаАа", "id":"74",
+        "employees":[
+            {"id":1204, "name":"qweqweqwe", "surname":"qweqweqwe", "fullName":"qweqweqwe qweqweqwe", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position":"«‡Ï. √ÂÌ. ‰ËÂÍÚÓ‡"},
+            {"id":1205, "name":"asdasdasd", "surname":"asdasdasd", "fullName":"ŒÎ¸„‡ ¡Ó‡Ò", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/cc7ec031_02d6_4027_b27b_ea8b679a55d9.jpg", "position":"√Î‡‚Ì˚È ·Ûı„‡ÎÚÂ"},
+            {"id":1206, "name":"zxczxczxc", "surname":"zxczxczxc", "fullName":"≈ÎÂÌ‡ “‡‚ÍËÌ‡", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/cbaae8bf_93eb_4975_a296_d633edc5686a.jpg", "position":"–ÛÍÓ‚Ó‰ËÚÂÎ¸ ÒÍÎ‡‰‡"},
+            {"id":1488, "name":"sdfsdfsdf", "surname":"sdfsdfsdf", "fullName":"ƒÏËÚËÈ √ÛÁ‰Â‚", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/9222d68c_6dbf_4d95_b863_2a7eec48133c.jpg", "position":"√Î‡‚Ì˚È ˝ÌÂ„ÂÚËÍ"},
+            {"id":1490, "name":"ertertert", "surname":"ertertert", "fullName":"¿ÎÂÍÒ‡Ì‰ ÃËı‡ÈÎÓ‚", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/0d220b0b_6b65_414b_b079_dce95ec375da.jpg", "position":"Á‡‚. ÒÍÎ‡‰ÓÏ"}
+        ],
         "departments":[
             {
                 "id":104,
@@ -151,7 +158,8 @@ var data = [
         ], "departments":[]},
         {"id":116, "name":"sdfsfasf", "employees":[], "departments":[]}
     ]},
-    {"name":"¿ÌÓ ¬ÂÍ", "id":"79", "departments":[
+    {"name":"¿ÌÓ ¬ÂÍ", "id":"79",
+        "departments":[
         {"id":124, "name":"œÓËÁ‚Ó‰ÒÚ‚ÂÌÌ˚È ÓÚ‰ÂÎ", "employees":[
             {"id":103, "name":"¿ÌÚÓÌ", "surname":"¬ÓÓÌËÌ ", "fullName":"¿ÌÚÓÌ ¬ÓÓÌËÌ ", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/103.jpg", "position":" ÓÌÒÚÛÍÚÓ"},
             {"id":104, "name":"œÂÚÓÒ", "surname":"Ã‡ÚËÓÒˇÌ", "fullName":"œÂÚÓÒ Ã‡ÚËÓÒˇÌ", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/104.jpg", "position":"«‡Ï ƒËÂÍÚÓ‡ ÔÓ ÔÓËÁ‚Ó‰ÒÚ‚Û"},
@@ -188,7 +196,8 @@ var data = [
             {"id":513, "name":"ÃÍÚË˜", "surname":"œÂÚÓÒˇÌ", "fullName":"ÃÍÚË˜ œÂÚÓÒˇÌ", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/bc18f521_9585_4c96_aaea_eadd7930bfe8.jpg", "position":"ƒËÂÍÚÓ"}
         ], "departments":[]}
     ]},
-    {"name":"Tescom", "id":"99", "departments":[
+    {"name":"Tescom", "id":"99",
+        "departments":[
         {"id":171, "name":"ŒÚ‰ÂÎ IT", "employees":[
             {"id":282, "name":"¬Î‡‰ËÏË", "surname":"ÃËÚÓÙ‡ÌÓ‚", "fullName":"¬Î‡‰ËÏË ÃËÚÓÙ‡ÌÓ‚", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/282.jpg", "position":"ƒËÂÍÚÓ ÔÓ IT"},
             {"id":286, "name":"¿ÌÌ‡", "surname":"«Û·‡ÌÓ‚‡", "fullName":"¿ÌÌ‡ «Û·‡ÌÓ‚‡", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position":"œÓ„‡ÏÏËÒÚ 1—"},
@@ -277,7 +286,8 @@ var data = [
             {"id":578, "name":"ƒÏËÚËÈ", "surname":"“ÛÌÓ‚", "fullName":"ƒÏËÚËÈ “ÛÌÓ‚", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position":"ÃÂÌÂ‰ÊÂ ÔÓ ÔÓ‰‡Ê‡Ï"}
         ], "departments":[]}
     ]},
-    {"name":"ŒŒŒ  ‡Ó", "id":"144", "departments":[
+    {"name":"ŒŒŒ  ‡Ó", "id":"144",
+        "departments":[
         {"id":271, "name":" ÓÏÏÂ˜ÂÒÍËÈ ÓÚ‰ÂÎ", "employees":[
             {"id":491, "name":"≈ÎËÁ‡‚ÂÚ‡", "surname":"‘Â‰ÓÓ‚‡", "fullName":"≈ÎËÁ‡‚ÂÚ‡ ‘Â‰ÓÓ‚‡", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/c1cf8858_5e66_4c11_8bc7_ab333d1473c7.jpg", "position":"¿ÒÒËÒÚÂÌÚ ÏÂÌÂ‰ÊÂ‡"},
             {"id":492, "name":"ÕËÌ‡", "surname":"ÿËˇÂ‚‡", "fullName":"ÕËÌ‡ ÿËˇÂ‚‡", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position":"ÃÂÌÂ‰ÊÂ"},
@@ -306,12 +316,14 @@ var data = [
         ], "departments":[]}
     ]},
     {"name":"ŒŒŒ Õ¿¡»", "id":"86", "departments":[
-        {"id":144, "name":"œÓËÁ‚Ó‰ÒÚ‚ÂÌÌ˚È ÓÚ‰ÂÎ", "employees":[
+        {"id":144, "name":"œÓËÁ‚Ó‰ÒÚ‚ÂÌÌ˚È ÓÚ‰ÂÎ",
+            "employees":[
             {"id":204, "name":"¿ÎÂÍÒ‡Ì‰", "surname":"√ÓÎÓ‚‡˜", "fullName":"¿ÎÂÍÒ‡Ì‰ √ÓÎÓ‚‡˜", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position":"«‡Ï. √ÂÌ. ‰ËÂÍÚÓ‡"},
             {"id":205, "name":"ŒÎ¸„‡", "surname":"¡Ó‡Ò", "fullName":"ŒÎ¸„‡ ¡Ó‡Ò", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/cc7ec031_02d6_4027_b27b_ea8b679a55d9.jpg", "position":"√Î‡‚Ì˚È ·Ûı„‡ÎÚÂ"},
             {"id":206, "name":"≈ÎÂÌ‡", "surname":"“‡‚ÍËÌ‡", "fullName":"≈ÎÂÌ‡ “‡‚ÍËÌ‡", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/cbaae8bf_93eb_4975_a296_d633edc5686a.jpg", "position":"–ÛÍÓ‚Ó‰ËÚÂÎ¸ ÒÍÎ‡‰‡"},
             {"id":488, "name":"ƒÏËÚËÈ", "surname":"√ÛÁ‰Â‚", "fullName":"ƒÏËÚËÈ √ÛÁ‰Â‚", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/9222d68c_6dbf_4d95_b863_2a7eec48133c.jpg", "position":"√Î‡‚Ì˚È ˝ÌÂ„ÂÚËÍ"},
             {"id":490, "name":"¿ÎÂÍÒ‡Ì‰", "surname":"ÃËı‡ÈÎÓ‚", "fullName":"¿ÎÂÍÒ‡Ì‰ ÃËı‡ÈÎÓ‚", "avatarUrl":"https://s3.amazonaws.com/airplans-staging/avatars/m/0d220b0b_6b65_414b_b079_dce95ec375da.jpg", "position":"Á‡‚. ÒÍÎ‡‰ÓÏ"}
-        ], "departments":[]}
+        ],
+            "departments":[]}
     ]}
 ]
