@@ -399,7 +399,7 @@ BEM.DOM.decl('b-employees-combobox', {
             this.elem('item-input').show();
         }
 
-        this.elem('input').focus();
+        this._isMulti || this.elem('input').focus();
     },
 
     cancelDepartmentSelected: function(id) {
@@ -605,10 +605,6 @@ BEM.DOM.decl('b-employees-combobox', {
             this._input.val() != val && this._input.val(val);
             this._val = val;
             this.trigger('change');
-        }
-
-        if (!this.findElem('input').size()) {
-            this._hideSuggest();
         }
 
         return this;
