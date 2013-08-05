@@ -263,8 +263,8 @@ BEM.DOM.decl('b-employees-combobox', {
             this._preventHide = false;
             this.elem('input').focus();
         } else {
+            this._dropdown.hide();
             this.setMod(this.elem('item-input'), 'selected', 'no');
-            this._dropdown.fadeOut(200);
         }
     },
 
