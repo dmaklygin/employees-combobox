@@ -40,6 +40,7 @@
     width: 68%;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .b-employees-combobox_multi_list .b-employees-combobox__selected-item_type_department .b-employees-combobox__selected-item-name

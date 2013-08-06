@@ -120,13 +120,6 @@ BEM.DOM.decl({
 
         var name = employee.fullName;
 
-        if (options.isMulti) {
-            name = [
-                employee.name.substr(0, 1),
-                employee.surname
-            ].join('. ')
-        }
-
         return '<li class="b-employees-combobox__selected-item' + ' b-employees-combobox__selected-item_id_' + employee.id + '">' +
             '<div class="b-employees-combobox__selected-item-position">' + options.position + '</div>' +
             '<div class="b-employees-combobox__selected-item-position-arrow">&darr;</div>' +

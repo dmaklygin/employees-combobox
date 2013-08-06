@@ -795,29 +795,11 @@ BEM.DOM.decl('b-employees-combobox', {
                                 empCls = 'b-employees-combobox__employee';
 
                             if (options.name) {
-
-                                var optionsName = options.name.toLowerCase(),
-                                    upperFirstLetters = function (text) {
-                                        return text
-                                            .split(' ')
-                                            .map(function (word, index) {
-                                                return word.substr(0, 1).toUpperCase() + word.substr(1);
-                                            })
-                                            .join(' ')
-                                    };
-
                                 name = name
                                     .toLowerCase()
-                                    .split(optionsName)
-                                    .map(function (word, index) {
-                                        return index == 0 ?
-                                            (word.length ?
-                                                upperFirstLetters(word) + '<strong>' + optionsName + '</strong>' :
-                                                '<strong>' + upperFirstLetters(optionsName) + '</strong>'
-                                                ) :
-                                            word;
-                                    })
-                                    .join('');
+                                    .replace(options.name.toLowerCase(), function (str, p1, p2) {
+                                        return '<strong>' + str + '</strong>';
+                                    });
                             }
 
                             if (selected) {
