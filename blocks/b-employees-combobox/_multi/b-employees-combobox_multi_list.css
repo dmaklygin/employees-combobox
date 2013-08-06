@@ -5,7 +5,7 @@
 
 .b-employees-combobox_multi_list .b-employees-combobox__selected-items
 {
-    border: 2px solid #e5e5e5;
+    border: 1px solid #BBB;
 }
 
 .b-employees-combobox_multi_list .b-employees-combobox__selected-item

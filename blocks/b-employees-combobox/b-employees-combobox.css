@@ -10,6 +10,8 @@
     overflow: hidden;
 }
 
+
+
 .b-employees-combobox__input
 {
 
@@ -19,14 +21,14 @@
     color: #333;
     font: normal 11px 'Segoe UI', Arial;
     border: none;
-    background: rgb(240, 240, 240); /* Old browsers */
-    background: -moz-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(240, 240, 240, 1)), color-stop(100%, rgba(255, 255, 255, 1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* IE10+ */
-    background: linear-gradient(to bottom, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#ffffff', GradientType=0); /* IE6-9 */
+    background: rgb(240, 240, 240);
+    background: -moz-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(240, 240, 240, 1)), color-stop(100%, rgba(255, 255, 255, 1)));
+    background: -webkit-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    background: -o-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    background: linear-gradient(to bottom, rgba(240, 240, 240, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f0f0f0', endColorstr='#ffffff', GradientType=0);
 }
 
 .b-employees-combobox__item-input_selected_yes .b-employees-combobox__input
@@ -257,8 +259,15 @@
     top: 0;
     left: 0;
     width: 98%;
-    border: 2px solid #e5e5e5;
+    border: 1px solid #BBB;
     background-color: #fff;
+}
+
+.b-employees-combobox__selected-items:hover {
+    border-color: #999;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px rgba(0,0,0,.1);
 }
 
 .b-employees-combobox__selected-item
