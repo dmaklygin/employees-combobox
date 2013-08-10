@@ -345,17 +345,6 @@
 
 .b-employees-combobox__company_select_yes .b-employees-combobox__arrow:after
 {
-    /*position: absolute;*/
-    /*z-index: 110;*/
-    /*content: "";*/
-    /*top: -8px;*/
-    /*right: -22px;*/
-    /*background: white;*/
-    /*-webkit-box-shadow: -2px 0px 3px rgba(152,198,223,1);*/
-    /*-moz-box-shadow: -2px 0px 3px rgba(152,198,223,1);*/
-    /*box-shadow: -2px 0px 3px rgba(152,198,223,1);*/
-    /*width: 1px;*/
-    /*height: 32px;*/
     -webkit-box-shadow: -2px 0px 3px rgba(152,198,223,1);
        -moz-box-shadow: -2px 0px 3px rgba(152,198,223,1);
         -ms-box-shadow: -2px 0px 3px rgba(152,198,223,1);

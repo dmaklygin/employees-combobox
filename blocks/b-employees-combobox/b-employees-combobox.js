@@ -166,6 +166,8 @@ BEM.DOM.decl('b-employees-combobox', {
                         break;
                     case 27:
                         _this._reset();
+                        e.preventDefault();
+                        return false;
                         break;
                     default:
                         this._showSuggest();
