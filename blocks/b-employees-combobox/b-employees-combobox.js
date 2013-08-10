@@ -10,7 +10,7 @@ BEM.DOM.decl('b-employees-combobox', {
                 defaultPlaceholder: 'Initiator',
                 activePlaceholder: 'Search',
                 valueName: 'combobox',
-                noFound: 'Поиск по фразе %s не дал результатов'
+                noFound: 'По запросу <span class="b-employees-combobox__search-string">«%s»</span> поиск не дал результатов'
             }, this.params);
 
             this._data = this.params.data;
@@ -142,6 +142,9 @@ BEM.DOM.decl('b-employees-combobox', {
                 this.setMod(this.elem('input'), 'status', 'active');
                 this._showSuggest(true);
             })
+            .bindTo(this.elem('input-plus'), 'click', function() {
+                this._input.focus();
+            })
             .bindTo(this._input, 'blur', function() {
                 this.setMod(this.elem('input'), 'status', 'inactive');
                 this.afterCurrentEvent(function() { _this._hideSuggest() });
@@ -255,10 +258,14 @@ BEM.DOM.decl('b-employees-combobox', {
                 _this.__scroller && _this._suggest.scrollbar();
 
                 !scrollOff && _this._scrollToCurrent();
+
+                $(document.body).css('overflow', 'hidden');
             });
     },
 
     _hideSuggest: function() {
+        $(document.body).css('overflow', '');
+
         if (this._preventHide) {
             this._preventHide = false;
             this.elem('input').focus();
@@ -469,28 +476,30 @@ BEM.DOM.decl('b-employees-combobox', {
             activeCompany = null,
             company;
 
-        $.each(matched, function(nc, company) {
-            if (company.id == _this._currentCompanyId && company.cnt > 0) {
+        $.each(matched, function(nc, comp) {
+            if (comp.id == _this._currentCompanyId && comp.cnt > 0) {
                 activeCompany = _this._currentCompanyId;
+                company = comp;
                 return false;
             }
         });
 
-        activeCompany || $.each(matched, function(nc, company) {
-            if (company.cnt > 0) {
-                activeCompany = company.id;
+        activeCompany || $.each(matched, function(nc, comp) {
+            if (comp.cnt > 0) {
+                activeCompany = comp.id;
+                company = comp;
                 return false;
             }
         });
 
         this._currentCompanyId = activeCompany || this._currentCompanyId;
 
-        for (var i = 0, l = matched.length; i < l; i++) {
-            if (matched[i].id == this._currentCompanyId) {
-                company = matched[i];
-                break;
-            }
-        }
+//        for (var i = 0, l = matched.length; i < l; i++) {
+//            if (matched[i].id == this._currentCompanyId) {
+//                company = matched[i];
+//                break;
+//            }
+//        }
 
         this._current = 0;
 
@@ -579,7 +588,7 @@ BEM.DOM.decl('b-employees-combobox', {
                 cntEmployees += (dep.cntEmployees || 0);
             });
 
-            res.push({
+            cntEmployees > 0 && res.push({
                 name: company.name,
                 id: company.id,
                 departments: matchedDepartments,

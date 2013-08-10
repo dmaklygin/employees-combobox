@@ -51,8 +51,6 @@
 
         this._initHeight();
 
-        this.doc.find('body').css('overflow', 'hidden');
-
         this._updateBarSizeAndPosition();
 
     };
