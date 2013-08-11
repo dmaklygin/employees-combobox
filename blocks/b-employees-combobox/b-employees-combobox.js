@@ -116,6 +116,17 @@ BEM.DOM.decl('b-employees-combobox', {
                 }
             };
 
+        this._data.forEach(function(company, index) {
+            if (company.employees && company.departments) {
+                company.departments.splice(0, 0, {
+                    "id": 0,
+                    "name": "",
+                    "employees": company.employees,
+                    "departments": []
+                });
+            }
+        });
+
         $.each(this._data, function(nc, company) {
             $.each(company.departments, function(nd, dep) {
                 departments.push(dep);

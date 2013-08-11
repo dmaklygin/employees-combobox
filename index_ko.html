@@ -103,17 +103,6 @@
                 employeesData[i] = comboboxLang[i];
             }
 
-            employeesData.data.forEach(function(company, index) {
-                if (company.employees && company.departments) {
-                    company.departments.splice(0, 0, {
-                        "id": 0,
-                        "name": "",
-                        "employees": company.employees,
-                        "departments": []
-                    });
-                }
-            });
-
             $(element).attr('onclick', "return { 'b-employees-combobox': " + JSON.stringify(employeesData) + " }");
 
             bemCombo = $(element).bem('b-employees-combobox');
