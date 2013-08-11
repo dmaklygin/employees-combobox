@@ -302,6 +302,9 @@
     display: inline-block;
     margin: 0 0 0 5px;
     vertical-align: middle;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .b-employees-combobox__cancel-selected,
