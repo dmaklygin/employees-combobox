@@ -114,7 +114,18 @@
     opacity: 0.3;
 }
 
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_hover_yes .b-employees-combobox__input
+{
+    cursor: pointer;
+}
+
+.b-employees-combobox_multi_list .b-employees-combobox__item-input_hover_yes .b-employees-combobox__input:focus
+{
+    cursor: text;
+}
+
 .b-employees-combobox__item-input_selected_no.b-employees-combobox__item-input_hover_yes
 {
+    cursor: pointer;
     opacity: 1;
 }

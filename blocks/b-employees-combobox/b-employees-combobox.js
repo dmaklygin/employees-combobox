@@ -76,9 +76,6 @@ BEM.DOM.decl('b-employees-combobox', {
             left: position.left,
             width: width
         });
-
-
-
     },
 
     _initValues: function() {
@@ -140,18 +137,20 @@ BEM.DOM.decl('b-employees-combobox', {
         var _this = this;
 
         this.on('change', function() {
-
             // update input style
             _this._updateInputStyle();
-
             // refresh Suggest
             _this._refreshSuggest();
         });
 
         this
             .bindTo(this._input, 'focus', function() {
+                if (this._dropdown.is(':visible')) {
+                    return true;
+                }
                 this.setMod(this.elem('input'), 'status', 'active');
                 this._showSuggest(true);
+                return true;
             })
             .bindTo(this.elem('input-plus'), 'click', function() {
                 this._input.focus();
@@ -187,18 +186,19 @@ BEM.DOM.decl('b-employees-combobox', {
             });
 
         this.bindTo(this._dropdown, 'mousedown', function(event) {
-
             var target = $(event.target),
                 company = target.parents(_this.buildSelector('company')),
                 employee = target.parents(_this.buildSelector('employee'));
 
-            if (company.size()) {
+            if (-1 !== target.get(0).className.indexOf('close')) {
+                _this._preventHide = false;
+                _this._hideSuggest();
+            } else if (company.size()) {
                 _this._currentCompanyId = _this.getMod(company, 'id');
                 _this._refreshSuggest();
                 _this._preventHide = true;
             } else if (employee.size()) {
                 _this.selectEmployee(_this.getMod(employee, 'id'));
-                _this._isMulti && (_this._preventHide = true);
             } else if (target.hasClass('b-employees-combobox__department-name')) {
                 var depDom = target.parent(),
                     hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
@@ -278,6 +278,7 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     _hideSuggest: function() {
+
         $(document.body).css('overflow', '');
 
         if (this._preventHide) {
@@ -390,7 +391,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this._isMulti || this.elem('item-input').hide();
 
-        this._isMulti || this._hideSuggest();
+        this._hideSuggest();
 
         silent || this.trigger('change');
 
@@ -508,13 +509,6 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this._currentCompanyId = activeCompany || this._currentCompanyId;
 
-//        for (var i = 0, l = matched.length; i < l; i++) {
-//            if (matched[i].id == this._currentCompanyId) {
-//                company = matched[i];
-//                break;
-//            }
-//        }
-
         this._current = 0;
 
         BEM.DOM.update(this._companies, this.getCompaniesHtml(matched, this._currentCompanyId));
@@ -616,7 +610,6 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     _renderValues: function() {
-        console.log();
         this.elem('value').val(this._values.join(','));
     },
 
@@ -666,21 +659,7 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     _getEmployeeById: function(id) {
-        var data = this._employees,
-            searchEmployee = function (emp) {
-
-                var employee = null;
-
-                if (emp.id == id) {
-                    employee = emp;
-                } else if (emp.departments.length) {
-                    $.each(dep.departments, function(nc, childDep) {
-                        department = searchDepartment(childDep);
-                        if (department) return false;
-                    });
-                }
-                return department;
-            };
+        var data = this._employees;
 
         for (var i = 0, l = data.length; i < l; i++) {
             if (data[i].id == id) return data[i];
@@ -736,8 +715,6 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     _reset: function() {
-
-        this._clear();
 
         this._hideSuggest();
 

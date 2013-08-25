@@ -106,6 +106,16 @@
     font-size: 1.1em;
 }
 
+.b-employees-combobox_multi_drag .b-employees-combobox__item-input_hover_yes .b-employees-combobox__input
+{
+    cursor: pointer;
+}
+
+.b-employees-combobox_multi_drag .b-employees-combobox__item-input_hover_yes .b-employees-combobox__input:focus
+{
+    cursor: text;
+}
+
 .b-employees-combobox__item-input_selected_no.b-employees-combobox__item-input_style_full.b-employees-combobox__item-input_hover_no
 {
     opacity: 0.3;
