@@ -285,11 +285,15 @@
 {
     display: inline-block;
     color: #1c5aa2;
-    font-weight: bold;
     text-transform:capitalize;
 }
 
 .b-employees-combobox__employee-name strong
+{
+    font-weight: bold;
+}
+
+.b-employees-combobox__employee_chief_yes .b-employees-combobox__employee-name
 {
     font-weight: bold;
 }

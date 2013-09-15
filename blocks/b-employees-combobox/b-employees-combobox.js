@@ -799,7 +799,8 @@ BEM.DOM.decl('b-employees-combobox', {
                         $.each(dep.employees, function(ne, emp) {
 
                             var name = emp.fullName,
-                                empCls = 'b-employees-combobox__employee';
+                                empCls = 'b-employees-combobox__employee',
+                                isChief = emp.isDepartmentChief || emp.isCompanyChief;
 
                             if (options.name) {
                                 name = name
@@ -815,7 +816,8 @@ BEM.DOM.decl('b-employees-combobox', {
                                 selected = true;
                             }
 
-                            depHtml += '<li class="' + empCls + ' ' + (selected ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + (emp.firedInfo ? ' ' + empCls + '_deleted_yes' : '') + '">';
+                            depHtml += '<li class="' + empCls + ' ' + (selected ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + (emp.firedInfo ? ' ' + empCls + '_deleted_yes' : '') +
+                                (isChief ? ' ' + empCls + '_chief_yes' : '') + '">';
                             depHtml += '<img src="' + emp.avatarUrl + '" height="32px" width="32px" />' +
                                             '<div class="b-employees-combobox__employee-info">' +
                                             '<div class="b-employees-combobox__employee-name">' + name + '</div>' +
