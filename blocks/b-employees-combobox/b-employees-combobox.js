@@ -10,7 +10,8 @@ BEM.DOM.decl('b-employees-combobox', {
                 defaultPlaceholder: 'Initiator',
                 activePlaceholder: 'Search',
                 valueName: 'combobox',
-                noFound: 'По запросу <span class="b-employees-combobox__search-string">«%s»</span> поиск не дал результатов'
+                noFound: 'По запросу <span class="b-employees-combobox__search-string">«%s»</span> поиск не дал результатов',
+                fired: 'Уволен'
             }, this.params);
 
             this._data = this.params.data;
@@ -73,8 +74,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this._dropdown.css({
             top: (position.top + height) + 'px',
-            left: position.left,
-            width: width
+            left: position.left
         });
     },
 
@@ -198,7 +198,9 @@ BEM.DOM.decl('b-employees-combobox', {
                 _this._refreshSuggest();
                 _this._preventHide = true;
             } else if (employee.size()) {
-                _this.selectEmployee(_this.getMod(employee, 'id'));
+                if (!_this.selectEmployee(_this.getMod(employee, 'id'))) {
+                    _this._preventHide = true;
+                }
             } else if (target.hasClass('b-employees-combobox__department-name')) {
                 var depDom = target.parent(),
                     hasSelected = $('.b-employees-combobox__employee_select_yes', depDom).length;
@@ -264,8 +266,7 @@ BEM.DOM.decl('b-employees-combobox', {
         this._dropdown
             .css({
                 top: (position.top + height) + 'px',
-                left: parentPosition.left,
-                width: width + 'px'
+                left: parentPosition.left
             })
             .fadeIn(200, function () {
 
@@ -361,12 +362,13 @@ BEM.DOM.decl('b-employees-combobox', {
     },
 
     selectEmployee: function(id, silent) {
+
         if (!id) return false;
 
         var _this = this,
             emp = this._getEmployeeById(id);
 
-        if (!emp) return false;
+        if (!emp || emp.firedInfo) return false;
 
         if (this._isMulti) {
             if (-1 === this._values.indexOf(id + 'e'))
@@ -449,16 +451,19 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.setMod(items.eq(current), 'select', 'no');
 
-        this._current = direction == 'down' ?
-            current == length - 1 ? 0 : current + 1 :
-            current == 0 ? length - 1 : current - 1;
+        do {
+            this._current = direction == 'down' ?
+                this._current == length - 1 ? 0 : this._current + 1 :
+                this._current == 0 ? length - 1 : this._current - 1;
 
-        var next = items.eq(this._current),
-            nextDep = next.parent().parent();
+            var next = items.eq(this._current),
+                nextDep = next.parent().parent(),
+                emp = this._getEmployeeById(this.getMod(next, 'id'));
+
+        } while (emp.firedInfo);
 
         // поиск не схлопнутого отдела для активного пункта
         if (this.hasMod(nextDep, 'expand', 'off')) {
-
             var deps = $('.b-employees-combobox__department', this._suggest),
                 currentIndex = deps.index(nextDep),
                 counter = currentIndex;
@@ -543,6 +548,7 @@ BEM.DOM.decl('b-employees-combobox', {
                     if (_this._values.indexOf(dep.id + 'd') !== -1) {
                         return matchedDepartments;
                     }
+
                     $.each(dep.employees, function(ne, emp) {
 
                         if (_this._values.indexOf(emp.id + 'e') !== -1) {
@@ -768,7 +774,8 @@ BEM.DOM.decl('b-employees-combobox', {
                 '</div>';
         }
 
-        var depListCls = 'b-employees-combobox__departments-list',
+        var _this = this,
+            depListCls = 'b-employees-combobox__departments-list',
             htmlBuf = '<ul class="' + depListCls + '">',
             selected = false,
             renderDepartmentsList = function(departments, level) {
@@ -808,11 +815,15 @@ BEM.DOM.decl('b-employees-combobox', {
                                 selected = true;
                             }
 
-                            depHtml += '<li class="' + empCls + ' ' + (selected ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + '">';
+                            depHtml += '<li class="' + empCls + ' ' + (selected ? empCls + '_select_yes ' : '') + empCls + '_id_' + emp.id + (emp.firedInfo ? ' ' + empCls + '_deleted_yes' : '') + '">';
                             depHtml += '<img src="' + emp.avatarUrl + '" height="32px" width="32px" />' +
                                             '<div class="b-employees-combobox__employee-info">' +
                                             '<div class="b-employees-combobox__employee-name">' + name + '</div>' +
-                                            '<div class="b-employees-combobox__employee-pos" title="' + emp.position + '">' + emp.position + '</div>' +
+                                            (emp.isDepartmentChief ? '<div class="b-employees-combobox__employee-silver-crown"></div>' : '') +
+                                            (emp.isCompanyChief ? '<div class="b-employees-combobox__employee-gold-crown"></div>' : '') +
+                                            '<div class="b-employees-combobox__employee-pos" title="' + emp.position + '">' +
+                                                (emp.firedInfo ? _this.params.fired : emp.position) +
+                                            '</div>' +
                                             '</div>';
                             depHtml += '</li>';
                         });

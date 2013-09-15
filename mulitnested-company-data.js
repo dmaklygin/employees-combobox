@@ -16,10 +16,38 @@ var data = [
         ]
     },
     {"name":"Агат", "id":"142", "departments":[
+        {
+            "id":2688,
+            "name":"Пустой пустой",
+            "employees":[],
+            "departments": []
+
+        },
         {"id":268, "name":"Администрация", "employees":[
-            {"id":479, "name":"Иван", "surname":"Мамочкин", "fullName":"Иван Мамочкин", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/m/97e8c533_fac4_4957_8cf8_2802d255d87c.jpg", "position":"Генеральный директор"},
-            {"id":480, "name":"Иван", "surname":"Крыжнев", "fullName":"Иван Крыжнев", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/m/fab63cec_bf1d_4070_bdc6_0b7dec20e9b0.jpg", "position":"Коммерческий директор"},
-            {"id":624, "name":"Наталья", "surname":"Агаркова", "fullName":"Наталья Агаркова", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/m/72c4758a_8dc1_4af8_8f46_9bf288bdbcc4.jpg", "position":"Финансовый управляющий"},
+            {
+                "id":479,
+                "name":"Иван",
+                "surname":"Мамочкин",
+                "fullName":"Иван Мамочкин",
+                "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/m/97e8c533_fac4_4957_8cf8_2802d255d87c.jpg",
+                "position":"Генеральный директор",
+                isDepartmentChief: true
+
+            },
+            {
+                "id":480, "name":"Иван", "surname":"Крыжнев", "fullName":"Иван Крыжнев", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/m/fab63cec_bf1d_4070_bdc6_0b7dec20e9b0.jpg",
+                "position":"Коммерческий директор",
+                isCompanyChief: true
+            },
+            {
+                "id":624,
+                "name":"Наталья",
+                "surname":"Агаркова",
+                "fullName":"Наталья Агаркова",
+                "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/m/72c4758a_8dc1_4af8_8f46_9bf288bdbcc4.jpg",
+                "position":"Финансовый управляющий",
+                "firedInfo": {"date": "sdfsd", "reason": "плохо работал" }
+            },
             {"id":718, "name":"Оксана", "surname":"Черномор", "fullName":"Оксана Черномор", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/m/09d28b0a_76d5_4b05_87ac_2c7d92c76829.jpg", "position":"Помощник директора"},
             {"id":731, "name":"Галина", "surname":"Бородина", "fullName":"Галина Бородина", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position":"Исполнительный директор"},
             {"id":765, "name":"Ираклий", "surname":"Оганезов", "fullName":"Ираклий Оганезов", "avatarUrl":"https://s3.amazonaws.com/airplans-avatars/default-medium.png", "position":"Директор"},
