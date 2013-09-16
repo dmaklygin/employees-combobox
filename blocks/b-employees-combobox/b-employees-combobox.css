@@ -195,15 +195,23 @@
 
 .b-employees-combobox__departments-list_type_child
 {
-    margin: 5px 0 0 15px;
+    margin: 10px 0 0 15px;
 }
 
 .b-employees-combobox__departments-list_type_child .b-employees-combobox__department
 {
-    padding: 5px 0 0 0;
+    padding: 10px 0 0 0;
     border-top: 1px solid #e1e1e1;
     border-bottom: none;
     margin-bottom: 5px;
+}
+
+.b-employees-combobox__no-employees
+{
+    color: #868686;
+    font-style: italic;
+    font-size: 11px;
+    margin: 0 0 5px 0;
 }
 
 .b-employees-combobox__employees-list

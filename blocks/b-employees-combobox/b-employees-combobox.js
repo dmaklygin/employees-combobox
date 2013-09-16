@@ -11,7 +11,8 @@ BEM.DOM.decl('b-employees-combobox', {
                 activePlaceholder: 'Search',
                 valueName: 'combobox',
                 noFound: 'По запросу <span class="b-employees-combobox__search-string">«%s»</span> поиск не дал результатов',
-                fired: 'Уволен'
+                fired: 'Уволен',
+                emptyDepartment: 'Отдел пуст'
             }, this.params);
 
             this._data = this.params.data;
@@ -372,7 +373,7 @@ BEM.DOM.decl('b-employees-combobox', {
         var _this = this,
             emp = this._getEmployeeById(id);
 
-        if (!emp || emp.firedInfo) return false;
+        if (!emp) return false;
 
         if (this._isMulti) {
             if (-1 === this._values.indexOf(id + 'e'))
@@ -455,16 +456,12 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.setMod(items.eq(current), 'select', 'no');
 
-        do {
-            this._current = direction == 'down' ?
-                this._current == length - 1 ? 0 : this._current + 1 :
-                this._current == 0 ? length - 1 : this._current - 1;
+        this._current = direction == 'down' ?
+            this._current == length - 1 ? 0 : this._current + 1 :
+            this._current == 0 ? length - 1 : this._current - 1;
 
-            var next = items.eq(this._current),
-                nextDep = next.parent().parent(),
-                emp = this._getEmployeeById(this.getMod(next, 'id'));
-
-        } while (emp.firedInfo);
+        var next = items.eq(this._current),
+            nextDep = next.parent().parent();
 
         // поиск не схлопнутого отдела для активного пункта
         if (this.hasMod(nextDep, 'expand', 'off')) {
@@ -586,7 +583,7 @@ BEM.DOM.decl('b-employees-combobox', {
                         cntEmployees += (childDep.cntEmployees || 0);
                     });
 
-                    (matchedEmployees.length || childDepartments.length) && matchedDepartments.push({
+                    ((val ? matchedEmployees.length : true) || childDepartments.length) && matchedDepartments.push({
                         name: dep.name,
                         id: dep.id,
                         departments: childDepartments,
@@ -798,7 +795,7 @@ BEM.DOM.decl('b-employees-combobox', {
                     depHtml += '<div class="b-employees-combobox__department-name">' + dep.name + '</div>';
 
                     // employees
-                    if (dep.employees) {
+                    if (dep.employees && dep.employees.length) {
                         depHtml += '<ul class="b-employees-combobox__employees-list">';
                         $.each(dep.employees, function(ne, emp) {
 
@@ -833,6 +830,11 @@ BEM.DOM.decl('b-employees-combobox', {
                                             '</div>';
                             depHtml += '</li>';
                         });
+                        depHtml += '</ul>';
+                    } else {
+                        // department is empty
+                        depHtml += '<ul class="b-employees-combobox__employees-list">';
+                        depHtml += '<li class="b-employees-combobox__no-employees">' + _this.params.emptyDepartment + '</li>';
                         depHtml += '</ul>';
                     }
 
