@@ -126,6 +126,7 @@
 .b-employees-combobox__company
 {
     position: relative;
+    height: 17px;
     padding-left: 35px;
     margin-bottom: 10px;
     cursor: pointer;
@@ -400,14 +401,10 @@
 
 .b-employees-combobox__company_select_yes .b-employees-combobox__arrow
 {
-    position: relative;
-    overflow: hidden;
-}
-
-.b-employees-combobox__company_select_yes .b-employees-combobox__arrow:after
-{
     position: absolute;
-    top: -15px;
+    overflow: hidden;
+
+    top: -11px;
     right: -20px;
     z-index: 110;
     width: 13px;
