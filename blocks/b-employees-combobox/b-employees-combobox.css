@@ -200,8 +200,10 @@
 
 .b-employees-combobox__departments-list_type_child .b-employees-combobox__department
 {
-    padding: 0;
-    border: none;
+    padding: 5px 0 0 0;
+    border-top: 1px solid #e1e1e1;
+    border-bottom: none;
+    margin-bottom: 5px;
 }
 
 .b-employees-combobox__employees-list
