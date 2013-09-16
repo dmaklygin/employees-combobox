@@ -145,10 +145,10 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this
             .bindTo(this._input, 'focus', function() {
+                this.setMod(this.elem('input'), 'status', 'active');
                 if (this._dropdown.is(':visible')) {
                     return true;
                 }
-                this.setMod(this.elem('input'), 'status', 'active');
                 this._showSuggest(true);
                 return true;
             })
@@ -187,8 +187,11 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.bindTo(this._dropdown, 'mousedown', function(event) {
             var target = $(event.target),
+                empClass = _this.buildSelector('employee'),
                 company = target.parents(_this.buildSelector('company')),
-                employee = target.parents(_this.buildSelector('employee'));
+                employee = target.parents(empClass);
+
+            employee = employee.size() ? employee : (_this.getMod(target, 'id') ? target : null);
 
             if (-1 !== target.get(0).className.indexOf('close')) {
                 _this._preventHide = false;
@@ -197,7 +200,7 @@ BEM.DOM.decl('b-employees-combobox', {
                 _this._currentCompanyId = _this.getMod(company, 'id');
                 _this._refreshSuggest();
                 _this._preventHide = true;
-            } else if (employee.size()) {
+            } else if (employee) {
                 if (!_this.selectEmployee(_this.getMod(employee, 'id'))) {
                     _this._preventHide = true;
                 }
@@ -284,6 +287,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
         if (this._preventHide) {
             this._preventHide = false;
+
             this.elem('input').focus();
         } else {
             this._dropdown.hide();
