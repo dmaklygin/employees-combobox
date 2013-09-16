@@ -265,7 +265,7 @@
 .b-employees-combobox__employee-info
 {
     position: relative;
-    top: 3px;
+    top: 0;
     display: inline-block;
     vertical-align: top;
     margin-left: 5px;
