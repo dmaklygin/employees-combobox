@@ -244,6 +244,10 @@ BEM.DOM.decl('b-employees-combobox', {
                 _this._preventHide = true;
             }
         });
+
+        $(window).on('mousewheel', function(event) {
+            return !_this._dropdownShow;
+        });
     },
 
     _scrollToCurrent: function(current) {
@@ -258,35 +262,30 @@ BEM.DOM.decl('b-employees-combobox', {
 
     _showSuggest: function(scrollOff) {
 
-        $(document.body).css('overflow', 'hidden');
-
-        var _this = this,
-            position = this.elem('item-input').offset(),
-            wrapper = this.elem('item-input').parent(),
-            parentPosition = wrapper.offset(),
-            width = wrapper.outerWidth(true),
-            height = this.elem('item-input').outerHeight(true);
+        var _this = this;
 
         this.setMod(this.elem('item-input'), 'selected', 'yes');
 
-        this._dropdown
+        var position = _this.elem('item-input').offset(),
+            wrapper = _this.elem('item-input').parent(),
+            parentPosition = wrapper.offset(),
+            height = _this.elem('item-input').outerHeight(true);
+
+        _this._dropdown
             .css({
                 top: (position.top + height) + 'px',
                 left: parentPosition.left
             })
             .fadeIn(200, function () {
-
                 _this.__scroller && _this._suggest.scrollbar();
-
                 !scrollOff && _this._scrollToCurrent();
-
-
             });
+
+        this._dropdownShow = true;
+
     },
 
     _hideSuggest: function() {
-
-        $(document.body).css('overflow', '');
 
         if (this._preventHide) {
             this._preventHide = false;
@@ -295,6 +294,7 @@ BEM.DOM.decl('b-employees-combobox', {
         } else {
             this._dropdown.hide();
             this.setMod(this.elem('item-input'), 'selected', 'no');
+            this._dropdownShow = false;
         }
     },
 
