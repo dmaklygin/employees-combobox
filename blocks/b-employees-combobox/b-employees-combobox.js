@@ -267,6 +267,8 @@ BEM.DOM.decl('b-employees-combobox', {
 
         this.setMod(this.elem('item-input'), 'selected', 'yes');
 
+        $(document.body).css('overflow', 'hidden');
+
         this._dropdown
             .css({
                 top: (position.top + height) + 'px',
@@ -278,7 +280,7 @@ BEM.DOM.decl('b-employees-combobox', {
 
                 !scrollOff && _this._scrollToCurrent();
 
-                $(document.body).css('overflow', 'hidden');
+
             });
     },
 
