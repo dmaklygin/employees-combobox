@@ -583,13 +583,14 @@ BEM.DOM.decl('b-employees-combobox', {
                         cntEmployees += (childDep.cntEmployees || 0);
                     });
 
-                    ((val ? matchedEmployees.length : true) || childDepartments.length) && matchedDepartments.push({
-                        name: dep.name,
-                        id: dep.id,
-                        departments: childDepartments,
-                        employees: matchedEmployees,
-                        cntEmployees: cntEmployees
-                    });
+                    ((val || !dep.id ? matchedEmployees.length : true) || childDepartments.length) &&
+                        matchedDepartments.push({
+                            name: dep.name,
+                            id: dep.id,
+                            departments: childDepartments,
+                            employees: matchedEmployees,
+                            cntEmployees: cntEmployees
+                        });
                 });
                 return matchedDepartments;
             };
