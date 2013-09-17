@@ -258,6 +258,8 @@ BEM.DOM.decl('b-employees-combobox', {
 
     _showSuggest: function(scrollOff) {
 
+        $(document.body).css('overflow', 'hidden');
+
         var _this = this,
             position = this.elem('item-input').offset(),
             wrapper = this.elem('item-input').parent(),
@@ -266,8 +268,6 @@ BEM.DOM.decl('b-employees-combobox', {
             height = this.elem('item-input').outerHeight(true);
 
         this.setMod(this.elem('item-input'), 'selected', 'yes');
-
-        $(document.body).css('overflow', 'hidden');
 
         this._dropdown
             .css({
